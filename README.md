@@ -62,7 +62,8 @@ Spring Boot repose sur SLF4J / Logback.
   - [Couche 5 : Database (Niveau base de données)](#couche-5--database-niveau-base-de-données)
   - [Couche 6 : HTTP/Web (Niveau réseau)](#couche-6--httpweb-niveau-réseau)
   - [Couche 7 : Security (Niveau sécurité Spring)](#couche-7--security-niveau-sécurité-spring)
-  - [Couche 8 : JVM (Niveau machine virtuelle)](#couche-8--jvm-niveau-machine-virtuelle)
+  - [Couche 8 : Actuator & Health Checks (Niveau monitoring)](#couche-8--actuator--health-checks-niveau-monitoring)
+  - [Couche 9 : JVM (Niveau machine virtuelle)](#couche-9--jvm-niveau-machine-virtuelle)
 - [Configuration complète pour tracer les opérations de fichiers](#configuration-complète-pour-tracer-les-opérations-de-fichiers)
   - [Configuration recommandée pour le débogage des fichiers](#configuration-recommandée-pour-le-débogage-des-fichiers)
   - [Configuration minimale pour le débogage des fichiers](#configuration-minimale-pour-le-débogage-des-fichiers)
@@ -603,7 +604,216 @@ env:
 
 ---
 
-### Couche 8 : JVM (Niveau machine virtuelle)
+### Couche 8 : Actuator & Health Checks (Niveau monitoring)
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE` / `logging.level.org.springframework.boot.actuate`
+Définit le niveau de journalisation pour Spring Boot Actuator.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_ENDPOINT` / `logging.level.org.springframework.boot.actuate.endpoint`
+Définit le niveau de journalisation pour les endpoints Actuator.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_ENDPOINT
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_WEB` / `logging.level.org.springframework.boot.actuate.web`
+Définit le niveau de journalisation pour les endpoints web Actuator.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_WEB
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_HEALTH` / `logging.level.org.springframework.boot.actuate.health`
+Définit le niveau de journalisation pour les health checks Actuator.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_HEALTH
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_METRICS` / `logging.level.org.springframework.boot.actuate.metrics`
+Définit le niveau de journalisation pour les métriques Actuator.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_METRICS
+    value: "DEBUG"
+```
+
+#### `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` / `management.endpoints.web.exposure.include`
+Définit quels endpoints Actuator sont exposés via HTTP.
+
+**Valeurs possibles :**
+- `health` - Endpoint de santé
+- `info` - Informations sur l'application
+- `metrics` - Métriques
+- `prometheus` - Métriques Prometheus
+- `*` - Tous les endpoints
+- Liste séparée par des virgules : `health,info,metrics`
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+    value: "health,info,metrics"
+```
+
+#### `MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS` / `management.endpoint.health.show-details`
+Définit si les détails des health checks doivent être affichés.
+
+**Valeurs possibles :**
+- `always` - Toujours afficher les détails
+- `when-authorized` - Afficher seulement si autorisé
+- `never` - Ne jamais afficher (par défaut)
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+    value: "always"
+```
+
+#### `MANAGEMENT_ENDPOINT_HEALTH_SHOW_COMPONENTS` / `management.endpoint.health.show-components`
+Définit si les composants individuels des health checks doivent être affichés.
+
+**Valeurs possibles :**
+- `true` - Afficher les composants
+- `false` - Ne pas afficher (par défaut)
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_COMPONENTS
+    value: "true"
+```
+
+#### `MANAGEMENT_HEALTH_DISKSPACE_ENABLED` / `management.health.diskspace.enabled`
+Active ou désactive le health check de l'espace disque.
+
+**Valeurs possibles :**
+- `true` - Active le health check disque (par défaut)
+- `false` - Désactive le health check disque
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_HEALTH_DISKSPACE_ENABLED
+    value: "true"
+```
+
+#### `MANAGEMENT_HEALTH_DB_ENABLED` / `management.health.db.enabled`
+Active ou désactive le health check de la base de données.
+
+**Valeurs possibles :**
+- `true` - Active le health check DB (par défaut)
+- `false` - Désactive le health check DB
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_HEALTH_DB_ENABLED
+    value: "true"
+```
+
+#### `MANAGEMENT_HEALTH_RABBIT_ENABLED` / `management.health.rabbit.enabled`
+Active ou désactive le health check RabbitMQ.
+
+**Valeurs possibles :**
+- `true` - Active le health check RabbitMQ (par défaut si présent)
+- `false` - Désactive le health check RabbitMQ
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_HEALTH_RABBIT_ENABLED
+    value: "true"
+```
+
+#### `MANAGEMENT_HEALTH_REDIS_ENABLED` / `management.health.redis.enabled`
+Active ou désactive le health check Redis.
+
+**Valeurs possibles :**
+- `true` - Active le health check Redis (par défaut si présent)
+- `false` - Désactive le health check Redis
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_HEALTH_REDIS_ENABLED
+    value: "true"
+```
+
+#### `MANAGEMENT_HEALTH_ELASTICSEARCH_ENABLED` / `management.health.elasticsearch.enabled`
+Active ou désactive le health check Elasticsearch.
+
+**Valeurs possibles :**
+- `true` - Active le health check Elasticsearch (par défaut si présent)
+- `false` - Désactive le health check Elasticsearch
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_HEALTH_ELASTICSEARCH_ENABLED
+    value: "true"
+```
+
+#### `MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED` / `management.metrics.export.prometheus.enabled`
+Active ou désactive l'export des métriques vers Prometheus.
+
+**Valeurs possibles :**
+- `true` - Active l'export Prometheus
+- `false` - Désactive l'export Prometheus (par défaut)
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED
+    value: "true"
+```
+
+#### `MANAGEMENT_ENDPOINTS_WEB_BASE_PATH` / `management.endpoints.web.base-path`
+Définit le chemin de base pour les endpoints Actuator.
+
+**Valeurs possibles :**
+- `/actuator` - Chemin par défaut
+- Tout chemin personnalisé (ex. `/monitoring`)
+
+**Utilisation :**
+```yaml
+env:
+  - name: MANAGEMENT_ENDPOINTS_WEB_BASE_PATH
+    value: "/actuator"
+```
+
+---
+
+### Couche 9 : JVM (Niveau machine virtuelle)
 
 #### `JAVA_TOOL_OPTIONS`
 Options JVM pour activer le traçage au niveau JVM.
