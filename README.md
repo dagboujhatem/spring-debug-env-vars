@@ -2,9 +2,19 @@
 
 ## Context :
 
-Voici les logs Spring / Java pour tracer TOUT ce qui concerne la lecture / écriture de fichiers (File read / write), 100 % via variables d'environnement, utilisables en Spring Boot 3.x / OpenShift.
+Ce document répertorie toutes les variables d'environnement disponibles pour activer le débogage et le traçage dans Spring Boot 3.x, organisées par couches fonctionnelles.
 
-Je te mets ça par couches, du plus haut niveau Spring jusqu'au niveau JVM pur.
+**Objectif :** Fournir un guide complet pour configurer le logging et le débogage via des variables d'environnement, utilisables directement dans Spring Boot 3.x et déployables sur OpenShift/Kubernetes.
+
+**Organisation :** Les variables sont organisées par couches, du plus haut niveau (Spring Boot) jusqu'au niveau le plus bas (JVM), couvrant :
+- Les opérations de fichiers (I/O)
+- Les connexions SSL/TLS
+- Les accès aux bases de données
+- Les requêtes HTTP/Web
+- La sécurité Spring
+- Et bien plus...
+
+Toutes les configurations sont fournies au format YAML pour une utilisation directe dans Kubernetes/OpenShift.
 
 ### Variable globale de debug Spring Boot
 
@@ -48,7 +58,11 @@ Spring Boot repose sur SLF4J / Logback.
   - [Couche 1 : Spring Boot (Niveau application)](#couche-1--spring-boot-niveau-application)
   - [Couche 2 : Spring Framework (Niveau framework)](#couche-2--spring-framework-niveau-framework)
   - [Couche 3 : Java I/O (Niveau Java - Opérations de fichiers)](#couche-3--java-io-niveau-java---opérations-de-fichiers)
-  - [Couche 4 : JVM (Niveau machine virtuelle)](#couche-4--jvm-niveau-machine-virtuelle)
+  - [Couche 4 : SSL/TLS (Niveau sécurité)](#couche-4--ssltls-niveau-sécurité)
+  - [Couche 5 : Database (Niveau base de données)](#couche-5--database-niveau-base-de-données)
+  - [Couche 6 : HTTP/Web (Niveau réseau)](#couche-6--httpweb-niveau-réseau)
+  - [Couche 7 : Security (Niveau sécurité Spring)](#couche-7--security-niveau-sécurité-spring)
+  - [Couche 8 : JVM (Niveau machine virtuelle)](#couche-8--jvm-niveau-machine-virtuelle)
 - [Configuration complète pour tracer les opérations de fichiers](#configuration-complète-pour-tracer-les-opérations-de-fichiers)
   - [Configuration recommandée pour le débogage des fichiers](#configuration-recommandée-pour-le-débogage-des-fichiers)
   - [Configuration minimale pour le débogage des fichiers](#configuration-minimale-pour-le-débogage-des-fichiers)
@@ -71,18 +85,6 @@ Définit le niveau de journalisation racine pour toute l'application.
 ```yaml
 env:
   - name: LOGGING_LEVEL_ROOT
-    value: "DEBUG"
-```
-
-#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_SSL` / `logging.level.org.springframework.boot.ssl`
-Définit le niveau de journalisation pour SSL/TLS dans Spring Boot.
-
-**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
-
-**Utilisation :**
-```yaml
-env:
-  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_SSL
     value: "DEBUG"
 ```
 
@@ -237,7 +239,371 @@ env:
 
 ---
 
-### Couche 4 : JVM (Niveau machine virtuelle)
+### Couche 4 : SSL/TLS (Niveau sécurité)
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_SSL` / `logging.level.org.springframework.boot.ssl`
+Définit le niveau de journalisation pour SSL/TLS dans Spring Boot.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_SSL
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_JAVAX_NET_SSL` / `logging.level.javax.net.ssl`
+Définit le niveau de journalisation pour les opérations SSL/TLS au niveau Java (javax.net.ssl).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_JAVAX_NET_SSL
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_SUN_SECURITY_SSL` / `logging.level.sun.security.ssl`
+Définit le niveau de journalisation pour les opérations SSL/TLS au niveau Sun Security (implémentation Java).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_SUN_SECURITY_SSL
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_APACHE_TOMCAT_UTIL_NET_SSL` / `logging.level.org.apache.tomcat.util.net.ssl`
+Définit le niveau de journalisation pour SSL/TLS dans Tomcat (si utilisé comme serveur embarqué).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_TOMCAT_UTIL_NET_SSL
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_APACHE_CATALINA_LOADER` / `logging.level.org.apache.catalina.loader`
+Définit le niveau de journalisation pour le chargement SSL dans Tomcat.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_CATALINA_LOADER
+    value: "DEBUG"
+```
+
+---
+
+### Couche 5 : Database (Niveau base de données)
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC` / `logging.level.org.springframework.jdbc`
+Définit le niveau de journalisation pour Spring JDBC (accès aux bases de données).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_CORE` / `logging.level.org.springframework.jdbc.core`
+Définit le niveau de journalisation pour le cœur JDBC de Spring (exécution des requêtes SQL).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_CORE
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_DATASOURCE` / `logging.level.org.springframework.jdbc.datasource`
+Définit le niveau de journalisation pour les sources de données Spring JDBC.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_DATASOURCE
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_HIBERNATE` / `logging.level.org.hibernate`
+Définit le niveau de journalisation pour Hibernate (ORM).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_HIBERNATE
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_HIBERNATE_SQL` / `logging.level.org.hibernate.SQL`
+Définit le niveau de journalisation pour les requêtes SQL générées par Hibernate.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_HIBERNATE_SQL
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL` / `logging.level.org.hibernate.type.descriptor.sql.BasicBinder`
+Définit le niveau de journalisation pour les paramètres SQL bindés par Hibernate.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL
+    value: "TRACE"
+```
+
+#### `LOGGING_LEVEL_COM_ZAXXER_HIKARI` / `logging.level.com.zaxxer.hikari`
+Définit le niveau de journalisation pour HikariCP (pool de connexions).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_ZAXXER_HIKARI
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_APACHE_TOMCAT_JDBC_POOL` / `logging.level.org.apache.tomcat.jdbc.pool`
+Définit le niveau de journalisation pour Tomcat JDBC Pool (si utilisé).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_TOMCAT_JDBC_POOL
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_COM_MYSQL_CJ` / `logging.level.com.mysql.cj`
+Définit le niveau de journalisation pour le driver MySQL Connector/J.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_MYSQL_CJ
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_POSTGRESQL` / `logging.level.org.postgresql`
+Définit le niveau de journalisation pour le driver PostgreSQL.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_POSTGRESQL
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORACLE_JDBC` / `logging.level.oracle.jdbc`
+Définit le niveau de journalisation pour le driver Oracle JDBC.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORACLE_JDBC
+    value: "DEBUG"
+```
+
+---
+
+### Couche 6 : HTTP/Web (Niveau réseau)
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB` / `logging.level.org.springframework.web`
+Définit le niveau de journalisation pour Spring Web (contrôleurs, requêtes HTTP).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_SERVLET` / `logging.level.org.springframework.web.servlet`
+Définit le niveau de journalisation pour Spring MVC Servlet.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_SERVLET
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_FILTER` / `logging.level.org.springframework.web.filter`
+Définit le niveau de journalisation pour les filtres Spring Web.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_FILTER
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_APACHE_CATALINA` / `logging.level.org.apache.catalina`
+Définit le niveau de journalisation pour Tomcat Catalina (serveur embarqué).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_CATALINA
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_APACHE_CATALINA_CONNECTOR` / `logging.level.org.apache.catalina.connector`
+Définit le niveau de journalisation pour les connecteurs Tomcat (HTTP/HTTPS).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_CATALINA_CONNECTOR
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_APACHE_CATALINA_CORE` / `logging.level.org.apache.catalina.core`
+Définit le niveau de journalisation pour le cœur de Tomcat.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_CATALINA_CORE
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_ECLIPSE_JETTY` / `logging.level.org.eclipse.jetty`
+Définit le niveau de journalisation pour Jetty (si utilisé comme serveur embarqué).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_ECLIPSE_JETTY
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_APACHE_HTTP` / `logging.level.org.apache.http`
+Définit le niveau de journalisation pour Apache HttpClient (si utilisé).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_HTTP
+    value: "DEBUG"
+```
+
+---
+
+### Couche 7 : Security (Niveau sécurité Spring)
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY` / `logging.level.org.springframework.security`
+Définit le niveau de journalisation pour Spring Security.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_WEB` / `logging.level.org.springframework.security.web`
+Définit le niveau de journalisation pour Spring Security Web (filtres de sécurité).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_WEB
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_AUTHENTICATION` / `logging.level.org.springframework.security.authentication`
+Définit le niveau de journalisation pour l'authentification Spring Security.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_AUTHENTICATION
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_ACCESS` / `logging.level.org.springframework.security.access`
+Définit le niveau de journalisation pour le contrôle d'accès Spring Security.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_ACCESS
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_OAUTH2` / `logging.level.org.springframework.security.oauth2`
+Définit le niveau de journalisation pour OAuth2 dans Spring Security.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Utilisation :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_OAUTH2
+    value: "DEBUG"
+```
+
+---
+
+### Couche 8 : JVM (Niveau machine virtuelle)
 
 #### `JAVA_TOOL_OPTIONS`
 Options JVM pour activer le traçage au niveau JVM.
