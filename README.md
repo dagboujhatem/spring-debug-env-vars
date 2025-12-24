@@ -895,6 +895,11 @@ Définit le niveau de journalisation pour les opérations I/O Java (lecture/écr
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer toutes les opérations I/O Java classiques
+- Trace les opérations de lecture/écriture de fichiers
+- Utile pour déboguer les problèmes d'accès aux fichiers
+
 **Exemple :**
 ```yaml
 env:
@@ -906,6 +911,11 @@ env:
 Définit le niveau de journalisation pour les opérations NIO (New I/O) Java.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations NIO (New I/O) Java
+- Trace les opérations asynchrones et les buffers
+- Utile pour déboguer les problèmes de performance I/O
 
 **Exemple :**
 ```yaml
@@ -919,6 +929,11 @@ Définit le niveau de journalisation pour les opérations sur les fichiers via N
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations sur les fichiers via l'API NIO Files
+- Trace les opérations Files.read(), Files.write(), Files.copy(), etc.
+- Utile pour déboguer les problèmes de manipulation de fichiers
+
 **Exemple :**
 ```yaml
 env:
@@ -931,6 +946,11 @@ Définit le niveau de journalisation pour FileInputStream (lecture de fichiers).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer spécifiquement les opérations de lecture de fichiers via FileInputStream
+- Trace l'ouverture, la lecture et la fermeture des fichiers
+- Utile pour déboguer les problèmes de lecture de fichiers
+
 **Exemple :**
 ```yaml
 env:
@@ -942,6 +962,11 @@ env:
 Définit le niveau de journalisation pour FileOutputStream (écriture de fichiers).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer spécifiquement les opérations d'écriture de fichiers via FileOutputStream
+- Trace l'ouverture, l'écriture et la fermeture des fichiers
+- Utile pour déboguer les problèmes d'écriture de fichiers
 
 **Exemple :**
 ```yaml
@@ -959,6 +984,11 @@ Définit le niveau de journalisation pour AWS SDK (opérations S3, etc.).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer toutes les opérations AWS SDK
+- Trace les requêtes vers les services AWS (S3, SQS, SNS, etc.)
+- Utile pour déboguer les problèmes de connexion et d'authentification AWS
+
 **Exemple :**
 ```yaml
 env:
@@ -970,6 +1000,11 @@ env:
 Définit le niveau de journalisation pour les opérations S3 spécifiques.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer spécifiquement les opérations S3
+- Trace les opérations PUT, GET, DELETE, LIST sur les buckets et objets
+- Utile pour déboguer les problèmes d'accès aux buckets S3
 
 **Exemple :**
 ```yaml
@@ -983,6 +1018,11 @@ Définit le niveau de journalisation pour l'authentification AWS.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer le processus d'authentification AWS
+- Trace la signature des requêtes et la gestion des credentials
+- Utile pour déboguer les problèmes d'authentification AWS
+
 **Exemple :**
 ```yaml
 env:
@@ -994,6 +1034,11 @@ env:
 Définit le niveau de journalisation pour Apache HTTP Client (utilisé par AWS SDK).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les requêtes HTTP effectuées par Apache HTTP Client
+- Utilisé par AWS SDK pour les requêtes vers les services AWS
+- Utile pour voir les requêtes HTTP brutes vers S3
 
 **Exemple :**
 ```yaml
@@ -1008,6 +1053,11 @@ Définit la clé d'accès AWS pour l'authentification S3.
 **Valeurs possibles :**
 - Clé d'accès AWS valide
 - Variable d'environnement ou secret Kubernetes recommandé
+
+**Usage :**
+- Fournit la clé d'accès AWS pour l'authentification
+- Nécessaire pour accéder aux buckets S3
+- Utilisez des secrets Kubernetes pour stocker cette valeur de manière sécurisée
 
 **Exemple :**
 ```yaml
@@ -1026,6 +1076,11 @@ Définit la clé secrète AWS pour l'authentification S3.
 - Clé secrète AWS valide
 - Variable d'environnement ou secret Kubernetes recommandé
 
+**Usage :**
+- Fournit la clé secrète AWS pour l'authentification
+- Utilisée avec AWS_ACCESS_KEY_ID pour s'authentifier
+- Utilisez des secrets Kubernetes pour stocker cette valeur de manière sécurisée
+
 **Exemple :**
 ```yaml
 env:
@@ -1042,6 +1097,11 @@ Définit la région AWS pour les opérations S3.
 **Valeurs possibles :**
 - Nom de région AWS (ex. `us-east-1`, `eu-west-1`, `ap-southeast-1`)
 
+**Usage :**
+- Spécifie la région AWS où se trouvent vos buckets S3
+- Nécessaire pour que l'application sache quelle région utiliser
+- Impacte la latence et les coûts
+
 **Exemple :**
 ```yaml
 env:
@@ -1054,6 +1114,11 @@ Définit le nom du bucket S3 à utiliser.
 
 **Valeurs possibles :**
 - Nom de bucket S3 valide
+
+**Usage :**
+- Spécifie le nom du bucket S3 par défaut à utiliser
+- Utilisé par Spring Cloud AWS pour les opérations S3
+- Peut être surchargé dans le code si nécessaire
 
 **Exemple :**
 ```yaml
@@ -1069,6 +1134,11 @@ Définit l'endpoint personnalisé pour S3 (utile pour S3-compatible comme MinIO)
 - URL complète de l'endpoint (ex. `http://minio:9000`)
 - Vide pour utiliser l'endpoint AWS par défaut
 
+**Usage :**
+- Permet d'utiliser un endpoint S3-compatible (MinIO, LocalStack, etc.)
+- Utile pour le développement local ou les environnements de test
+- Remplace l'endpoint AWS par défaut
+
 **Exemple :**
 ```yaml
 env:
@@ -1083,6 +1153,11 @@ Active l'accès style path pour S3 (nécessaire pour certains endpoints S3-compa
 - `true` - Active l'accès style path
 - `false` - Utilise l'accès style virtual-hosted (par défaut)
 
+**Usage :**
+- Active l'accès style path pour S3 (ex. `http://endpoint/bucket/key`)
+- Nécessaire pour certains endpoints S3-compatibles comme MinIO
+- Par défaut, AWS utilise le style virtual-hosted (ex. `http://bucket.endpoint/key`)
+
 **Exemple :**
 ```yaml
 env:
@@ -1096,6 +1171,11 @@ Active ou désactive le support Spring Cloud AWS S3.
 **Valeurs possibles :**
 - `true` - Active le support S3 (par défaut si dépendance présente)
 - `false` - Désactive le support S3
+
+**Usage :**
+- Active ou désactive l'intégration Spring Cloud AWS S3
+- Utile pour désactiver S3 si vous n'utilisez pas cette fonctionnalité
+- Par défaut activé si la dépendance Spring Cloud AWS est présente
 
 **Exemple :**
 ```yaml
@@ -1113,6 +1193,11 @@ Définit le niveau de journalisation pour SSL/TLS dans Spring Boot.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations SSL/TLS dans Spring Boot
+- Trace le chargement des certificats et la configuration SSL
+- Utile pour déboguer les problèmes de certificats et de configuration HTTPS
+
 **Exemple :**
 ```yaml
 env:
@@ -1124,6 +1209,11 @@ env:
 Définit le niveau de journalisation pour les opérations SSL/TLS au niveau Java (javax.net.ssl).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations SSL/TLS au niveau Java standard (javax.net.ssl)
+- Trace les handshakes SSL, les négociations de protocole et les erreurs de certificat
+- Utile pour déboguer les problèmes de connexion SSL/TLS
 
 **Exemple :**
 ```yaml
@@ -1137,6 +1227,11 @@ Définit le niveau de journalisation pour les opérations SSL/TLS au niveau Sun 
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations SSL/TLS au niveau de l'implémentation Sun Security
+- Trace les détails internes des handshakes SSL et des opérations de chiffrement
+- Utile pour un débogage approfondi des problèmes SSL/TLS
+
 **Exemple :**
 ```yaml
 env:
@@ -1149,6 +1244,11 @@ Définit le niveau de journalisation pour SSL/TLS dans Tomcat (si utilisé comme
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations SSL/TLS dans Tomcat
+- Trace la configuration HTTPS, le chargement des certificats et les connexions SSL
+- Utile pour déboguer les problèmes de configuration HTTPS dans Tomcat
+
 **Exemple :**
 ```yaml
 env:
@@ -1160,6 +1260,11 @@ env:
 Définit le niveau de journalisation pour le chargement SSL dans Tomcat.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer le chargement des classes et ressources SSL dans Tomcat
+- Trace le chargement des certificats et des keystores
+- Utile pour déboguer les problèmes de chargement de certificats SSL
 
 **Exemple :**
 ```yaml
@@ -1179,6 +1284,11 @@ Définit le niveau de journalisation pour Spring JDBC (accès aux bases de donn�
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer toutes les opérations Spring JDBC
+- Trace les requêtes SQL, les résultats et les erreurs
+- Utile pour déboguer les problèmes d'accès aux bases de données
+
 **Exemple :**
 ```yaml
 env:
@@ -1191,6 +1301,11 @@ Définit le niveau de journalisation pour le cœur JDBC de Spring (exécution de
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer l'exécution des requêtes SQL via Spring JDBC
+- Trace les requêtes préparées, les paramètres et les résultats
+- Utile pour déboguer les problèmes d'exécution de requêtes SQL
+
 **Exemple :**
 ```yaml
 env:
@@ -1202,6 +1317,11 @@ env:
 Définit le niveau de journalisation pour les sources de données Spring JDBC.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations sur les sources de données Spring JDBC
+- Trace la création, la configuration et la gestion des connexions
+- Utile pour déboguer les problèmes de pool de connexions
 
 **Exemple :**
 ```yaml
@@ -1217,6 +1337,11 @@ Définit le niveau de journalisation pour Hibernate (ORM).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer toutes les opérations Hibernate
+- Trace les sessions, les transactions, le cache et les requêtes
+- Utile pour déboguer les problèmes d'ORM et de mapping
+
 **Exemple :**
 ```yaml
 env:
@@ -1229,6 +1354,11 @@ Définit le niveau de journalisation pour les requêtes SQL générées par Hibe
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de voir toutes les requêtes SQL générées par Hibernate
+- Trace les requêtes SELECT, INSERT, UPDATE, DELETE
+- Utile pour optimiser les requêtes et déboguer les problèmes de performance
+
 **Exemple :**
 ```yaml
 env:
@@ -1240,6 +1370,11 @@ env:
 Définit le niveau de journalisation pour les paramètres SQL bindés par Hibernate.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de voir les valeurs des paramètres bindés dans les requêtes SQL
+- Trace les paramètres des requêtes préparées avec leurs valeurs réelles
+- Utile pour déboguer les problèmes de paramètres et de types
 
 **Exemple :**
 ```yaml
@@ -1255,6 +1390,11 @@ Définit le niveau de journalisation pour HikariCP (pool de connexions).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations du pool de connexions HikariCP
+- Trace l'obtention, la libération et la gestion des connexions
+- Utile pour déboguer les problèmes de pool (timeout, fuites de connexions)
+
 **Exemple :**
 ```yaml
 env:
@@ -1266,6 +1406,11 @@ env:
 Définit le niveau de journalisation pour Tomcat JDBC Pool (si utilisé).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations du pool de connexions Tomcat JDBC
+- Trace l'obtention, la libération et la gestion des connexions
+- Utile pour déboguer les problèmes de pool de connexions Tomcat
 
 **Exemple :**
 ```yaml
@@ -1281,6 +1426,11 @@ Définit le niveau de journalisation pour le driver MySQL Connector/J.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations du driver MySQL
+- Trace les connexions, les requêtes et les erreurs MySQL
+- Utile pour déboguer les problèmes de connexion et de requêtes MySQL
+
 **Exemple :**
 ```yaml
 env:
@@ -1293,6 +1443,11 @@ Définit le niveau de journalisation pour le driver PostgreSQL.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations du driver PostgreSQL
+- Trace les connexions, les requêtes et les erreurs PostgreSQL
+- Utile pour déboguer les problèmes de connexion et de requêtes PostgreSQL
+
 **Exemple :**
 ```yaml
 env:
@@ -1304,6 +1459,11 @@ env:
 Définit le niveau de journalisation pour le driver Oracle JDBC.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations du driver Oracle JDBC
+- Trace les connexions, les requêtes et les erreurs Oracle
+- Utile pour déboguer les problèmes de connexion et de requêtes Oracle
 
 **Exemple :**
 ```yaml
