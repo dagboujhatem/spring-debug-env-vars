@@ -247,7 +247,7 @@ env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_HEALTH
     value: "DEBUG"
   - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-    value: "health,info,metrics"
+    value: "health,info,metrics,env"
   - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
     value: "always"
   - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_COMPONENTS
