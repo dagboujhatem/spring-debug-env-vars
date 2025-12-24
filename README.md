@@ -78,10 +78,14 @@ Spring Boot repose sur SLF4J / Logback.
     - [Bases de données NoSQL](#bases-de-données-nosql)
       - [Elasticsearch](#logging_level_org_elasticsearch--logginglevelorgelasticsearch)
       - [MongoDB](#logging_level_org_mongodb--logginglevelorgmongodb)
-  - [Couche 8 : HTTP/Web (Niveau réseau)](#couche-8--httpweb-niveau-réseau)
-  - [Couche 9 : Security (Niveau sécurité Spring)](#couche-9--security-niveau-sécurité-spring)
-  - [Couche 10 : Actuator & Health Checks (Niveau monitoring)](#couche-10--actuator--health-checks-niveau-monitoring)
-  - [Couche 11 : JVM (Niveau machine virtuelle)](#couche-11--jvm-niveau-machine-virtuelle)
+  - [Couche 8 : MQ (Message Queue)](#couche-8--mq-message-queue)
+    - [Kafka](#kafka)
+    - [RabbitMQ](#rabbitmq)
+    - [IBM MQ](#ibm-mq)
+  - [Couche 9 : HTTP/Web (Niveau réseau)](#couche-9--httpweb-niveau-réseau)
+  - [Couche 10 : Security (Niveau sécurité Spring)](#couche-10--security-niveau-sécurité-spring)
+  - [Couche 11 : Actuator & Health Checks (Niveau monitoring)](#couche-11--actuator--health-checks-niveau-monitoring)
+  - [Couche 12 : JVM (Niveau machine virtuelle)](#couche-12--jvm-niveau-machine-virtuelle)
 - [Configuration complète pour tracer les opérations de fichiers](#configuration-complète-pour-tracer-les-opérations-de-fichiers)
   - [Configuration recommandée pour le débogage des fichiers](#configuration-recommandée-pour-le-débogage-des-fichiers)
   - [Configuration minimale pour le débogage des fichiers](#configuration-minimale-pour-le-débogage-des-fichiers)
@@ -224,7 +228,30 @@ env:
     value: "DEBUG"
 
   # ============================================
-  # Couche 8 : HTTP/Web (Niveau réseau)
+  # Couche 8 : MQ (Message Queue)
+  # ============================================
+  # Kafka
+  - name: LOGGING_LEVEL_ORG_APACHE_KAFKA
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_APACHE_KAFKA_CLIENTS
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_KAFKA
+    value: "DEBUG"
+  # RabbitMQ
+  - name: LOGGING_LEVEL_COM_RABBITMQ
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_AMQP
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_AMQP_RABBIT
+    value: "DEBUG"
+  # IBM MQ
+  - name: LOGGING_LEVEL_COM_IBM_MQ
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_COM_IBM_MQJMS
+    value: "DEBUG"
+
+  # ============================================
+  # Couche 9 : HTTP/Web (Niveau réseau)
   # ============================================
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
     value: "DEBUG"
@@ -1374,7 +1401,221 @@ env:
 
 ---
 
-### Couche 8 : HTTP/Web (Niveau réseau)
+### Couche 8 : MQ (Message Queue)
+
+#### Kafka
+
+##### `LOGGING_LEVEL_ORG_APACHE_KAFKA` / `logging.level.org.apache.kafka`
+Définit le niveau de journalisation pour Apache Kafka.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations Kafka
+- Trace les connexions aux brokers, la production et la consommation de messages
+- Utile pour déboguer les problèmes de connexion et de performance
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_KAFKA
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_APACHE_KAFKA_CLIENTS` / `logging.level.org.apache.kafka.clients`
+Définit le niveau de journalisation pour les clients Kafka.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations des clients Kafka (producers et consumers)
+- Trace les envois et réceptions de messages
+- Utile pour déboguer les problèmes de sérialisation et de désérialisation
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_APACHE_KAFKA_CLIENTS
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_KAFKA` / `logging.level.org.springframework.kafka`
+Définit le niveau de journalisation pour Spring Kafka.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations Spring Kafka
+- Trace les listeners, les templates Kafka et les transactions
+- Utile pour déboguer les problèmes de configuration et de gestion des messages
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_KAFKA
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_KAFKA_LISTENER` / `logging.level.org.springframework.kafka.listener`
+Définit le niveau de journalisation pour les listeners Kafka.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations des listeners Kafka
+- Trace la réception et le traitement des messages
+- Utile pour déboguer les problèmes de consommation de messages
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_KAFKA_LISTENER
+    value: "DEBUG"
+```
+
+#### RabbitMQ
+
+##### `LOGGING_LEVEL_COM_RABBITMQ` / `logging.level.com.rabbitmq`
+Définit le niveau de journalisation pour RabbitMQ Client.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations RabbitMQ
+- Trace les connexions, les canaux, les échanges et les files d'attente
+- Utile pour déboguer les problèmes de connexion et de routage
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_RABBITMQ
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_AMQP` / `logging.level.org.springframework.amqp`
+Définit le niveau de journalisation pour Spring AMQP (RabbitMQ).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations Spring AMQP
+- Trace les templates, les listeners et les conversions de messages
+- Utile pour déboguer les problèmes de configuration et de gestion des messages
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_AMQP
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_AMQP_RABBIT` / `logging.level.org.springframework.amqp.rabbit`
+Définit le niveau de journalisation pour Spring AMQP RabbitMQ.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations spécifiques à RabbitMQ dans Spring AMQP
+- Trace les connexions, les listeners et les transactions
+- Utile pour déboguer les problèmes de connexion et de gestion des messages
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_AMQP_RABBIT
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_AMQP_RABBIT_LISTENER` / `logging.level.org.springframework.amqp.rabbit.listener`
+Définit le niveau de journalisation pour les listeners RabbitMQ.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations des listeners RabbitMQ
+- Trace la réception et le traitement des messages depuis les files d'attente
+- Utile pour déboguer les problèmes de consommation de messages
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_AMQP_RABBIT_LISTENER
+    value: "DEBUG"
+```
+
+#### IBM MQ
+
+##### `LOGGING_LEVEL_COM_IBM_MQ` / `logging.level.com.ibm.mq`
+Définit le niveau de journalisation pour IBM MQ.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations IBM MQ
+- Trace les connexions aux gestionnaires de files d'attente, les opérations PUT/GET
+- Utile pour déboguer les problèmes de connexion et de gestion des messages
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_IBM_MQ
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_COM_IBM_MQJMS` / `logging.level.com.ibm.mqjms`
+Définit le niveau de journalisation pour IBM MQ JMS.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations JMS avec IBM MQ
+- Trace les sessions JMS, les producteurs et les consommateurs
+- Utile pour déboguer les problèmes de connexion JMS et de gestion des messages
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_IBM_MQJMS
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_COM_IBM_MSGCLIENT` / `logging.level.com.ibm.msgclient`
+Définit le niveau de journalisation pour IBM MQ Client.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations du client IBM MQ
+- Trace les connexions, les canaux et les opérations de file d'attente
+- Utile pour déboguer les problèmes de connexion et de communication
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_IBM_MSGCLIENT
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_COM_IBM_MSGCLIENT_JMS` / `logging.level.com.ibm.msgclient.jms`
+Définit le niveau de journalisation pour IBM MQ JMS Client.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations JMS du client IBM MQ
+- Trace les connexions JMS, les factories et les opérations de message
+- Utile pour déboguer les problèmes de configuration JMS
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_IBM_MSGCLIENT_JMS
+    value: "DEBUG"
+```
+
+---
+
+### Couche 9 : HTTP/Web (Niveau réseau)
 
 #### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB` / `logging.level.org.springframework.web`
 Définit le niveau de journalisation pour Spring Web (contrôleurs, requêtes HTTP).
@@ -1474,7 +1715,7 @@ env:
 
 ---
 
-### Couche 9 : Security (Niveau sécurité Spring)
+### Couche 10 : Security (Niveau sécurité Spring)
 
 #### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY` / `logging.level.org.springframework.security`
 Définit le niveau de journalisation pour Spring Security.
@@ -1538,7 +1779,7 @@ env:
 
 ---
 
-### Couche 10 : Actuator & Health Checks (Niveau monitoring)
+### Couche 11 : Actuator & Health Checks (Niveau monitoring)
 
 #### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE` / `logging.level.org.springframework.boot.actuate`
 Définit le niveau de journalisation pour Spring Boot Actuator.
@@ -1773,7 +2014,7 @@ env:
 
 ---
 
-### Couche 11 : JVM (Niveau machine virtuelle)
+### Couche 12 : JVM (Niveau machine virtuelle)
 
 #### `JAVA_TOOL_OPTIONS`
 Options JVM pour activer le traçage au niveau JVM.
