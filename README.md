@@ -151,6 +151,8 @@ env:
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_AUTHENTICATION
     value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_LEASE
+    value: "DEBUG"
   - name: SPRING_CLOUD_VAULT_URI
     value: "http://vault:8200"
   - name: SPRING_CLOUD_VAULT_AUTHENTICATION
@@ -697,6 +699,38 @@ Définit le niveau de journalisation pour l'authentification Vault.
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_AUTHENTICATION
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_LEASE` / `logging.level.org.springframework.vault.lease`
+Définit le niveau de journalisation pour la gestion des leases Vault.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Définition:** c’est quoi un Vault lease ?
+
+Un lease Vault c'est une durée de vie associée à un secret dynamique ou renouvelable
+(ex : DB credentials, KV v2 avec lease, tokens, etc.)
+
+Exemples :
+- lease_duration = 3600
+- renewable = true
+
+Spring Cloud Vault :
+- Attache le lease
+- Le renouvelle automatiquement
+- Réagit s’il expire
+
+**Usage :**
+- Permet de tracer la gestion des leases Vault (renouvellement, expiration)
+- Trace le cycle de vie des leases et leur renouvellement automatique
+- Utile pour déboguer les problèmes de renouvellement de leases et d'expiration de secrets
+- Important pour les secrets dynamiques qui nécessitent un renouvellement périodique
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_LEASE
     value: "DEBUG"
 ```
 
