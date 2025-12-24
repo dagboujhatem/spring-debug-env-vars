@@ -275,6 +275,10 @@ Définit le niveau de journalisation racine pour toute l'application.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Définit le niveau de logging par défaut pour toute l'application
+- Tous les loggers qui n'ont pas de niveau spécifique hériteront de ce niveau
+
 **Exemple :**
 ```yaml
 env:
@@ -293,6 +297,10 @@ Spécifie quels profils Spring sont actifs.
 - Profils multiples : `dev,debug` ou `dev,test,prod`
 - Tout nom de profil personnalisé
 
+**Usage :**
+- Active les profils Spring pour charger les configurations spécifiques à un environnement
+- Permet de séparer les configurations dev/test/prod
+
 **Exemple :**
 ```yaml
 env:
@@ -307,6 +315,10 @@ Active la sortie couleur ANSI dans la console.
 - `always` - Active toujours les couleurs ANSI
 - `never` - Désactive toujours les couleurs ANSI
 - `detect` - Détecte selon les capacités du terminal (par défaut)
+
+**Usage :**
+- Améliore la lisibilité des logs en activant les couleurs ANSI dans la console
+- Utile pour le développement local
 
 **Exemple :**
 ```yaml
@@ -324,6 +336,11 @@ Définit le niveau de journalisation du framework Spring.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer toutes les opérations du framework Spring
+- Utile pour comprendre le cycle de vie de l'application
+- Trace le chargement des beans et les interactions internes
+
 **Exemple :**
 ```yaml
 env:
@@ -335,6 +352,11 @@ env:
 Définit le niveau de journalisation de Spring Web.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les requêtes HTTP
+- Trace le routage et les contrôleurs
+- Trace toutes les opérations liées à Spring MVC/WebFlux
 
 **Exemple :**
 ```yaml
@@ -348,6 +370,12 @@ Définit le niveau de journalisation du contexte Spring (chargement de fichiers 
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer le chargement du contexte Spring
+- Trace l'initialisation des beans
+- Trace le chargement des fichiers de configuration
+- Trace les événements du cycle de vie
+
 **Exemple :**
 ```yaml
 env:
@@ -359,6 +387,12 @@ env:
 Définit le niveau de journalisation des beans Spring.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer la création des beans Spring
+- Trace l'injection de dépendances
+- Trace le cycle de vie des beans
+- Utile pour déboguer les problèmes d'injection
 
 **Exemple :**
 ```yaml
@@ -410,6 +444,10 @@ Définit le niveau de journalisation pour le serveur Spring Cloud Config.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations du serveur Config (si vous utilisez un serveur Config dans votre application)
+- Utile pour déboguer les problèmes de serveur
+
 **Exemple :**
 ```yaml
 env:
@@ -442,6 +480,10 @@ Définit l'URI du serveur Spring Cloud Config.
 - URL complète du serveur Config (ex. `http://config-server:8888`)
 - URL avec protocole HTTPS si SSL activé
 
+**Usage :**
+- Configure l'URL du serveur Cloud Config
+- Nécessaire pour que l'application puisse se connecter au serveur de configuration
+
 **Exemple :**
 ```yaml
 env:
@@ -455,6 +497,10 @@ Définit le nom de l'application pour Spring Cloud Config.
 **Valeurs possibles :**
 - Nom de l'application (ex. `myapp`)
 - Nom par défaut : `application`
+
+**Usage :**
+- Spécifie le nom de l'application utilisé pour récupérer la configuration depuis le serveur Config
+- Le serveur cherchera les fichiers `{name}-{profile}.yml` ou `{name}-{profile}.properties`
 
 **Exemple :**
 ```yaml
@@ -472,6 +518,10 @@ Définit le profil pour Spring Cloud Config.
 - `prod` - Profil production
 - Profils multiples séparés par des virgules
 
+**Usage :**
+- Spécifie le profil utilisé pour récupérer la configuration
+- Permet de charger des configurations différentes selon l'environnement
+
 **Exemple :**
 ```yaml
 env:
@@ -485,6 +535,10 @@ Définit la branche/label pour Spring Cloud Config (Git).
 **Valeurs possibles :**
 - Nom de branche Git (ex. `main`, `master`, `develop`)
 - Par défaut : `master`
+
+**Usage :**
+- Spécifie la branche Git à utiliser pour récupérer la configuration
+- Utile pour tester des configurations depuis différentes branches
 
 **Exemple :**
 ```yaml
@@ -500,6 +554,10 @@ Définit si l'application doit échouer au démarrage si le serveur Config n'est
 - `true` - Échoue si le serveur Config n'est pas disponible
 - `false` - Continue même si le serveur Config n'est pas disponible (par défaut)
 
+**Usage :**
+- Force l'application à échouer immédiatement si le serveur Config n'est pas accessible
+- Utile pour détecter rapidement les problèmes de connexion en production
+
 **Exemple :**
 ```yaml
 env:
@@ -514,6 +572,10 @@ Définit l'intervalle initial pour les tentatives de reconnexion au serveur Conf
 - Nombre en millisecondes (ex. `1000` pour 1 seconde)
 - Par défaut : `1000`
 
+**Usage :**
+- Configure le délai initial entre les tentatives de reconnexion au serveur Config
+- Utile pour gérer les problèmes de réseau temporaires
+
 **Exemple :**
 ```yaml
 env:
@@ -527,6 +589,10 @@ Définit le nombre maximum de tentatives de reconnexion au serveur Config.
 **Valeurs possibles :**
 - Nombre entier (ex. `6`)
 - Par défaut : `6`
+
+**Usage :**
+- Définit combien de fois l'application doit essayer de se connecter au serveur Config avant d'abandonner
+- Utile pour gérer les problèmes de réseau temporaires
 
 **Exemple :**
 ```yaml
@@ -558,6 +624,11 @@ Définit le niveau de journalisation pour le cœur de Spring Vault.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations de base de Vault
+- Trace la lecture/écriture des secrets
+- Trace les opérations sur les backends KV
+
 **Exemple :**
 ```yaml
 env:
@@ -569,6 +640,10 @@ env:
 Définit le niveau de journalisation pour l'authentification Vault.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer le processus d'authentification Vault (token, AppRole, Kubernetes, etc.)
+- Utile pour déboguer les problèmes d'authentification
 
 **Exemple :**
 ```yaml
@@ -583,6 +658,10 @@ Définit l'URI du serveur HashiCorp Vault.
 **Valeurs possibles :**
 - URL complète du serveur Vault (ex. `http://vault:8200`)
 - URL avec protocole HTTPS si SSL activé
+
+**Usage :**
+- Configure l'URL du serveur Vault
+- Nécessaire pour que l'application puisse se connecter à Vault et récupérer les secrets
 
 **Exemple :**
 ```yaml
@@ -603,6 +682,10 @@ Définit la méthode d'authentification pour Vault.
 - `LDAP` - Authentification LDAP
 - `CERT` - Authentification par certificat
 
+**Usage :**
+- Spécifie la méthode d'authentification à utiliser pour se connecter à Vault
+- Chaque méthode nécessite des paramètres spécifiques (token, role-id/secret-id, etc.)
+
 **Exemple :**
 ```yaml
 env:
@@ -616,6 +699,10 @@ Définit le token d'authentification Vault (pour l'authentification TOKEN).
 **Valeurs possibles :**
 - Token Vault valide
 - Variable d'environnement ou secret Kubernetes recommandé
+
+**Usage :**
+- Fournit le token Vault pour l'authentification
+- Utilisez des secrets Kubernetes pour stocker ce token de manière sécurisée
 
 **Exemple :**
 ```yaml
@@ -633,6 +720,10 @@ Définit le Role ID pour l'authentification AppRole Vault.
 **Valeurs possibles :**
 - Role ID Vault valide
 
+**Usage :**
+- Fournit le Role ID pour l'authentification AppRole
+- Utilisé avec le Secret ID pour s'authentifier auprès de Vault
+
 **Exemple :**
 ```yaml
 env:
@@ -648,6 +739,11 @@ Définit le Secret ID pour l'authentification AppRole Vault.
 
 **Valeurs possibles :**
 - Secret ID Vault valide
+
+**Usage :**
+- Fournit le Secret ID pour l'authentification AppRole
+- Utilisé avec le Role ID
+- Stockez ce secret de manière sécurisée (secrets Kubernetes)
 
 **Exemple :**
 ```yaml
@@ -666,6 +762,10 @@ Active ou désactive le support Key-Value (KV) pour Vault.
 - `true` - Active le support KV (par défaut)
 - `false` - Désactive le support KV
 
+**Usage :**
+- Active ou désactive la récupération des secrets depuis les backends KV de Vault
+- Désactivez si vous n'utilisez pas de backends KV
+
 **Exemple :**
 ```yaml
 env:
@@ -679,6 +779,10 @@ Définit le backend KV à utiliser dans Vault.
 **Valeurs possibles :**
 - `secret` - Backend secret par défaut
 - Nom personnalisé du backend KV
+
+**Usage :**
+- Spécifie quel backend KV Vault utiliser pour récupérer les secrets
+- Par défaut, utilise le backend `secret`
 
 **Exemple :**
 ```yaml
@@ -694,6 +798,10 @@ Définit le nom de l'application pour le backend KV Vault.
 - Nom de l'application (ex. `myapp`)
 - Par défaut : nom de l'application Spring
 
+**Usage :**
+- Spécifie le nom de l'application utilisé pour construire le chemin dans Vault (ex. `secret/{application-name}`)
+- Par défaut, utilise le nom de l'application Spring
+
 **Exemple :**
 ```yaml
 env:
@@ -708,6 +816,10 @@ Active ou désactive SSL pour les connexions Vault.
 - `true` - Active SSL (recommandé en production)
 - `false` - Désactive SSL (par défaut)
 
+**Usage :**
+- Active le chiffrement SSL/TLS pour les connexions à Vault
+- Obligatoire en production pour sécuriser les communications
+
 **Exemple :**
 ```yaml
 env:
@@ -721,6 +833,10 @@ Définit si l'application doit échouer au démarrage si Vault n'est pas disponi
 **Valeurs possibles :**
 - `true` - Échoue si Vault n'est pas disponible
 - `false` - Continue même si Vault n'est pas disponible (par défaut)
+
+**Usage :**
+- Force l'application à échouer immédiatement si Vault n'est pas accessible
+- Utile pour détecter rapidement les problèmes de connexion en production
 
 **Exemple :**
 ```yaml
