@@ -74,6 +74,15 @@ Spring Boot repose sur SLF4J / Logback.
 - [Variables supplémentaires utiles](#variables-supplémentaires-utiles)
 
 ---
+## List des config par couche 
+
+```yaml
+env:
+  # 
+  - name: LOGGING_LEVEL_ROOT
+    value: "DEBUG"
+```
+---
 
 ## Variables d'environnement par couches
 
@@ -1331,31 +1340,45 @@ env:
 
 ### Configuration recommandée pour le débogage des fichiers
 
-```bash
-# Spring Boot
-export SPRING_DEBUG=true
-export SPRING_PROFILES_ACTIVE=dev,debug
-export SPRING_OUTPUT_ANSI_ENABLED=always
-
-# Logging général
-export LOGGING_LEVEL_ROOT=INFO
-export LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=DEBUG
-
-# Logging spécifique pour les opérations de fichiers
-export LOGGING_LEVEL_JAVA_IO=DEBUG
-export LOGGING_LEVEL_JAVA_NIO=DEBUG
-export LOGGING_LEVEL_JAVA_NIO_FILE=DEBUG
-export LOGGING_LEVEL_JAVA_IO_FILEINPUTSTREAM=DEBUG
-export LOGGING_LEVEL_JAVA_IO_FILEOUTPUTSTREAM=DEBUG
+```yaml
+env:
+  # Spring Boot
+  - name: SPRING_DEBUG
+    value: "true"
+  - name: SPRING_PROFILES_ACTIVE
+    value: "dev,debug"
+  - name: SPRING_OUTPUT_ANSI_ENABLED
+    value: "always"
+  # Logging général
+  - name: LOGGING_LEVEL_ROOT
+    value: "INFO"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK
+    value: "DEBUG"
+  # Logging spécifique pour les opérations de fichiers
+  - name: LOGGING_LEVEL_JAVA_IO
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_NIO
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_NIO_FILE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_IO_FILEINPUTSTREAM
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_IO_FILEOUTPUTSTREAM
+    value: "DEBUG"
 ```
 
 ### Configuration minimale pour le débogage des fichiers
 
-```bash
-export LOGGING_LEVEL_ROOT=INFO
-export LOGGING_LEVEL_JAVA_NIO_FILE=DEBUG
-export LOGGING_LEVEL_JAVA_IO_FILEINPUTSTREAM=DEBUG
-export LOGGING_LEVEL_JAVA_IO_FILEOUTPUTSTREAM=DEBUG
+```yaml
+env:
+  - name: LOGGING_LEVEL_ROOT
+    value: "INFO"
+  - name: LOGGING_LEVEL_JAVA_NIO_FILE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_IO_FILEINPUTSTREAM
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_IO_FILEOUTPUTSTREAM
+    value: "DEBUG"
 ```
 
 ### Configuration pour OpenShift / Kubernetes
