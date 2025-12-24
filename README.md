@@ -1,5 +1,11 @@
 # Variables d'environnement de débogage Spring
 
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=spring)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Supported-blue?logo=kubernetes)
+![OpenShift](https://img.shields.io/badge/OpenShift-Supported-orange?logo=redhatopenshift)
+![YAML](https://img.shields.io/badge/Format-YAML-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 ## Context :
 
 Ce document répertorie toutes les variables d'environnement disponibles pour activer le débogage et le traçage dans Spring Boot 3.x, organisées par couches fonctionnelles.
@@ -70,18 +76,213 @@ Spring Boot repose sur SLF4J / Logback.
   - [Configuration recommandée pour le débogage des fichiers](#configuration-recommandée-pour-le-débogage-des-fichiers)
   - [Configuration minimale pour le débogage des fichiers](#configuration-minimale-pour-le-débogage-des-fichiers)
   - [Configuration pour OpenShift / Kubernetes](#configuration-pour-openshift--kubernetes)
+- [Configuration pour déboguer Vault & Cloud Config](#configuration-pour-déboguer-vault--cloud-config)
+  - [Configuration complète pour déboguer la récupération des secrets](#configuration-complète-pour-déboguer-la-récupération-des-secrets)
+  - [Configuration minimale pour déboguer Vault & Cloud Config](#configuration-minimale-pour-déboguer-vault--cloud-config)
+  - [Ce que vous verrez dans les logs](#ce-que-vous-verrez-dans-les-logs)
+  - [Points clés à vérifier dans les logs](#points-clés-à-vérifier-dans-les-logs)
 - [Notes importantes](#notes-importantes)
 - [Variables supplémentaires utiles](#variables-supplémentaires-utiles)
 
 ---
-## List des config par couche 
+## Liste des configurations par couche
+
+### Couche 1 : Spring Boot (Niveau application)
 
 ```yaml
 env:
-  # 
   - name: LOGGING_LEVEL_ROOT
     value: "DEBUG"
+  - name: SPRING_PROFILES_ACTIVE
+    value: "dev,debug"
+  - name: SPRING_OUTPUT_ANSI_ENABLED
+    value: "always"
+  - name: SPRING_DEBUG
+    value: "true"
 ```
+
+### Couche 2 : Spring Framework (Niveau framework)
+
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CONTEXT
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BEANS
+    value: "DEBUG"
+```
+
+### Couche 3 : Vault & Cloud Config (Niveau configuration externe)
+
+```yaml
+env:
+  # Cloud Config
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG_CLIENT
+    value: "DEBUG"
+  - name: SPRING_CLOUD_CONFIG_URI
+    value: "http://config-server:8888"
+  - name: SPRING_CLOUD_CONFIG_NAME
+    value: "myapp"
+  - name: SPRING_CLOUD_CONFIG_PROFILE
+    value: "dev"
+  - name: SPRING_CLOUD_CONFIG_FAIL_FAST
+    value: "true"
+  # Vault
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_CORE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_AUTHENTICATION
+    value: "DEBUG"
+  - name: SPRING_CLOUD_VAULT_URI
+    value: "http://vault:8200"
+  - name: SPRING_CLOUD_VAULT_AUTHENTICATION
+    value: "TOKEN"
+  - name: SPRING_CLOUD_VAULT_KV_ENABLED
+    value: "true"
+  - name: SPRING_CLOUD_VAULT_FAIL_FAST
+    value: "true"
+```
+
+### Couche 4 : Java I/O (Niveau Java - Opérations de fichiers)
+
+```yaml
+env:
+  - name: LOGGING_LEVEL_JAVA_IO
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_NIO
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_NIO_FILE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_IO_FILEINPUTSTREAM
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVA_IO_FILEOUTPUTSTREAM
+    value: "DEBUG"
+```
+
+### Couche 5 : S3 / Cloud Storage (Niveau stockage cloud)
+
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_AMAZONAWS
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_COM_AMAZONAWS_SERVICES_S3
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_COM_AMAZONAWS_AUTH
+    value: "DEBUG"
+  - name: AWS_REGION
+    value: "us-east-1"
+  - name: AWS_S3_BUCKET
+    value: "my-bucket-name"
+  - name: AWS_S3_ENDPOINT
+    value: "http://minio:9000"
+  - name: AWS_S3_PATH_STYLE_ACCESS
+    value: "true"
+```
+
+### Couche 6 : SSL/TLS (Niveau sécurité)
+
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_SSL
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_JAVAX_NET_SSL
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_SUN_SECURITY_SSL
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_APACHE_TOMCAT_UTIL_NET_SSL
+    value: "DEBUG"
+```
+
+### Couche 7 : Database (Niveau base de données)
+
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_CORE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_HIBERNATE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_HIBERNATE_SQL
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL
+    value: "TRACE"
+  - name: LOGGING_LEVEL_COM_ZAXXER_HIKARI
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_COM_MYSQL_CJ
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_POSTGRESQL
+    value: "DEBUG"
+```
+
+### Couche 8 : HTTP/Web (Niveau réseau)
+
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_SERVLET
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_FILTER
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_APACHE_CATALINA
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_APACHE_CATALINA_CONNECTOR
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_APACHE_HTTP
+    value: "DEBUG"
+```
+
+### Couche 9 : Security (Niveau sécurité Spring)
+
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_WEB
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_AUTHENTICATION
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_ACCESS
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_OAUTH2
+    value: "DEBUG"
+```
+
+### Couche 10 : Actuator & Health Checks (Niveau monitoring)
+
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_HEALTH
+    value: "DEBUG"
+  - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+    value: "health,info,metrics"
+  - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+    value: "always"
+  - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_COMPONENTS
+    value: "true"
+  - name: MANAGEMENT_HEALTH_DB_ENABLED
+    value: "true"
+```
+
+### Couche 11 : JVM (Niveau machine virtuelle)
+
+```yaml
+env:
+  - name: JAVA_TOOL_OPTIONS
+    value: "-Djava.util.logging.config.file=/path/to/logging.properties"
+  - name: JAVA_OPTS
+    value: "-Djava.io.tmpdir=/tmp -XX:+TraceClassLoading"
+```
+
 ---
 
 ## Variables d'environnement par couches
@@ -1398,6 +1599,152 @@ env:
   - name: LOGGING_LEVEL_JAVA_IO_FILEOUTPUTSTREAM
     value: "DEBUG"
 ```
+
+---
+
+## Configuration pour déboguer Vault & Cloud Config
+
+### Configuration complète pour déboguer la récupération des secrets
+
+Configuration complète pour tracer toutes les opérations de récupération de secrets depuis Vault et Cloud Config :
+
+```yaml
+env:
+  # ============================================
+  # Debug Vault - Récupération des secrets
+  # ============================================
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_CORE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_AUTHENTICATION
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_SUPPORT
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_CLIENT
+    value: "DEBUG"
+  
+  # ============================================
+  # Debug Cloud Config - Récupération des configs
+  # ============================================
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG_CLIENT
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG_CLIENT_CONFIG_SERVICE_BOOTSTRAP
+    value: "TRACE"
+  
+  # ============================================
+  # Debug Bootstrap (chargement initial)
+  # ============================================
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_BOOTSTRAP
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONTEXT
+    value: "DEBUG"
+  
+  # ============================================
+  # Debug HTTP pour voir les requêtes
+  # ============================================
+  - name: LOGGING_LEVEL_ORG_APACHE_HTTP
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_APACHE_HTTP_WIRE
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_CLIENT
+    value: "DEBUG"
+  
+  # ============================================
+  # Configuration Vault (pour vérifier les paramètres)
+  # ============================================
+  - name: SPRING_CLOUD_VAULT_URI
+    value: "http://vault:8200"  # Votre URI Vault
+  - name: SPRING_CLOUD_VAULT_AUTHENTICATION
+    value: "TOKEN"  # ou APPROLE, KUBERNETES, etc.
+  - name: SPRING_CLOUD_VAULT_KV_ENABLED
+    value: "true"
+  - name: SPRING_CLOUD_VAULT_KV_BACKEND
+    value: "secret"
+  - name: SPRING_CLOUD_VAULT_FAIL_FAST
+    value: "true"  # Pour voir les erreurs immédiatement
+  
+  # ============================================
+  # Configuration Cloud Config (pour vérifier les paramètres)
+  # ============================================
+  - name: SPRING_CLOUD_CONFIG_URI
+    value: "http://config-server:8888"  # Votre URI Config Server
+  - name: SPRING_CLOUD_CONFIG_NAME
+    value: "myapp"  # Nom de votre application
+  - name: SPRING_CLOUD_CONFIG_PROFILE
+    value: "dev"  # Votre profil
+  - name: SPRING_CLOUD_CONFIG_FAIL_FAST
+    value: "true"  # Pour voir les erreurs immédiatement
+  
+  # ============================================
+  # Debug général Spring pour voir le contexte
+  # ============================================
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CONTEXT
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BEANS
+    value: "DEBUG"
+```
+
+### Configuration minimale pour déboguer Vault & Cloud Config
+
+Configuration minimale pour un débogage rapide :
+
+```yaml
+env:
+  # Vault - Debug complet
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT
+    value: "TRACE"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_CORE
+    value: "TRACE"
+  
+  # Cloud Config - Debug complet
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG
+    value: "TRACE"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG_CLIENT
+    value: "TRACE"
+  
+  # Bootstrap pour voir le chargement initial
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_BOOTSTRAP
+    value: "DEBUG"
+  
+  # Fail fast pour voir les erreurs immédiatement
+  - name: SPRING_CLOUD_VAULT_FAIL_FAST
+    value: "true"
+  - name: SPRING_CLOUD_CONFIG_FAIL_FAST
+    value: "true"
+```
+
+### Ce que vous verrez dans les logs
+
+**Pour Vault :**
+- Connexion au serveur Vault
+- Processus d'authentification (token, AppRole, Kubernetes, etc.)
+- Requêtes vers les backends KV (Key-Value)
+- Secrets récupérés (les valeurs sont masquées pour la sécurité)
+- Erreurs d'authentification ou de connexion
+
+**Pour Cloud Config :**
+- Connexion au serveur Config
+- Requêtes HTTP vers le serveur Config
+- Configuration récupérée depuis le serveur
+- Erreurs de connexion ou de parsing
+
+**Pour le Bootstrap :**
+- Ordre de chargement (Vault puis Config, ou l'inverse selon la configuration)
+- Propriétés chargées depuis chaque source
+- Résolution des conflits de propriétés
+
+### Points clés à vérifier dans les logs
+
+- `VaultTemplate` - Toutes les opérations Vault
+- `ConfigServicePropertySourceLocator` - Récupération depuis Cloud Config
+- `VaultAuthentication` - Processus d'authentification Vault
+- `RestTemplate` ou `WebClient` - Requêtes HTTP vers Vault/Config Server
+- `BootstrapApplicationListener` - Ordre de chargement des configurations
+
+**Note :** Le niveau `TRACE` génère beaucoup de logs. Commencez par `DEBUG`, puis passez à `TRACE` si vous avez besoin de plus de détails.
 
 ---
 
