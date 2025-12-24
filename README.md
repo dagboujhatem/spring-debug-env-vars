@@ -1499,15 +1499,41 @@ Définit quels endpoints Actuator sont exposés via HTTP.
 - `info` - Informations sur l'application
 - `metrics` - Métriques
 - `prometheus` - Métriques Prometheus
+- `env` - Variables d'environnement et propriétés
 - `*` - Tous les endpoints
-- Liste séparée par des virgules : `health,info,metrics`
+- Liste séparée par des virgules : `health,info,metrics,env`
+
+**Usage :**
+- Expose les endpoints Actuator via HTTP
+- L'endpoint `env` permet de consulter toutes les variables d'environnement et propriétés de l'application
+- Utile pour déboguer la configuration en production
 
 **Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-    value: "health,info,metrics"
+    value: "health,info,metrics,env"
 ```
+
+**Exemple de requête Actuator :**
+
+Pour consulter les variables d'environnement via l'endpoint `env` :
+
+```bash
+# Requête GET pour obtenir toutes les variables d'environnement
+curl http://localhost:8080/actuator/env
+
+# Requête GET pour obtenir une propriété spécifique
+curl http://localhost:8080/actuator/env/spring.application.name
+
+# Requête GET pour obtenir les variables d'environnement système
+curl http://localhost:8080/actuator/env/systemProperties
+
+# Requête GET pour obtenir les variables d'environnement système (OS)
+curl http://localhost:8080/actuator/env/systemEnvironment
+```
+
+**Note de sécurité :** L'endpoint `env` expose des informations sensibles (secrets, mots de passe, etc.). Ne l'exposez pas en production sans authentification appropriée.
 
 #### `MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS` / `management.endpoint.health.show-details`
 Définit si les détails des health checks doivent être affichés.
