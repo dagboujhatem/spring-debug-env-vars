@@ -68,6 +68,16 @@ Spring Boot repose sur SLF4J / Logback.
   - [Couche 5 : S3 / Cloud Storage (Niveau stockage cloud)](#couche-5--s3--cloud-storage-niveau-stockage-cloud)
   - [Couche 6 : SSL/TLS (Niveau sécurité)](#couche-6--ssltls-niveau-sécurité)
   - [Couche 7 : Database (Niveau base de données)](#couche-7--database-niveau-base-de-données)
+    - [Spring JDBC](#spring-jdbc)
+    - [Hibernate (ORM)](#hibernate-orm)
+    - [Pool de connexions](#pool-de-connexions)
+    - [Drivers de base de données](#drivers-de-base-de-données)
+      - [MySQL - `LOGGING_LEVEL_COM_MYSQL_CJ`](#logging_level_com_mysql_cj--logginglevelcommysqlcj)
+      - [PostgreSQL - `LOGGING_LEVEL_ORG_POSTGRESQL`](#logging_level_org_postgresql--logginglevelorgpostgresql)
+      - [Oracle - `LOGGING_LEVEL_ORACLE_JDBC`](#logging_level_oracle_jdbc--loggingleveloraclejdbc)
+    - [Bases de données NoSQL](#bases-de-données-nosql)
+      - [Elasticsearch](#logging_level_org_elasticsearch--logginglevelorgelasticsearch)
+      - [MongoDB](#logging_level_org_mongodb--logginglevelorgmongodb)
   - [Couche 8 : HTTP/Web (Niveau réseau)](#couche-8--httpweb-niveau-réseau)
   - [Couche 9 : Security (Niveau sécurité Spring)](#couche-9--security-niveau-sécurité-spring)
   - [Couche 10 : Actuator & Health Checks (Niveau monitoring)](#couche-10--actuator--health-checks-niveau-monitoring)
@@ -192,18 +202,22 @@ env:
   # ============================================
   # Couche 7 : Database (Niveau base de données)
   # ============================================
+  # Spring JDBC
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_CORE
     value: "DEBUG"
+  # Hibernate (ORM)
   - name: LOGGING_LEVEL_ORG_HIBERNATE
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_HIBERNATE_SQL
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL
     value: "TRACE"
+  # Pool de connexions
   - name: LOGGING_LEVEL_COM_ZAXXER_HIKARI
     value: "DEBUG"
+  # Drivers de base de données
   - name: LOGGING_LEVEL_COM_MYSQL_CJ
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_POSTGRESQL
@@ -1131,7 +1145,9 @@ env:
 
 ### Couche 7 : Database (Niveau base de données)
 
-#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC` / `logging.level.org.springframework.jdbc`
+#### Spring JDBC
+
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC` / `logging.level.org.springframework.jdbc`
 Définit le niveau de journalisation pour Spring JDBC (accès aux bases de données).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1143,7 +1159,7 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_CORE` / `logging.level.org.springframework.jdbc.core`
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_CORE` / `logging.level.org.springframework.jdbc.core`
 Définit le niveau de journalisation pour le cœur JDBC de Spring (exécution des requêtes SQL).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1155,7 +1171,7 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_DATASOURCE` / `logging.level.org.springframework.jdbc.datasource`
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_DATASOURCE` / `logging.level.org.springframework.jdbc.datasource`
 Définit le niveau de journalisation pour les sources de données Spring JDBC.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1167,7 +1183,9 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_ORG_HIBERNATE` / `logging.level.org.hibernate`
+#### Hibernate (ORM)
+
+##### `LOGGING_LEVEL_ORG_HIBERNATE` / `logging.level.org.hibernate`
 Définit le niveau de journalisation pour Hibernate (ORM).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1179,7 +1197,7 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_ORG_HIBERNATE_SQL` / `logging.level.org.hibernate.SQL`
+##### `LOGGING_LEVEL_ORG_HIBERNATE_SQL` / `logging.level.org.hibernate.SQL`
 Définit le niveau de journalisation pour les requêtes SQL générées par Hibernate.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1191,7 +1209,7 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL` / `logging.level.org.hibernate.type.descriptor.sql.BasicBinder`
+##### `LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL` / `logging.level.org.hibernate.type.descriptor.sql.BasicBinder`
 Définit le niveau de journalisation pour les paramètres SQL bindés par Hibernate.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1203,7 +1221,9 @@ env:
     value: "TRACE"
 ```
 
-#### `LOGGING_LEVEL_COM_ZAXXER_HIKARI` / `logging.level.com.zaxxer.hikari`
+#### Pool de connexions
+
+##### `LOGGING_LEVEL_COM_ZAXXER_HIKARI` / `logging.level.com.zaxxer.hikari`
 Définit le niveau de journalisation pour HikariCP (pool de connexions).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1215,7 +1235,7 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_ORG_APACHE_TOMCAT_JDBC_POOL` / `logging.level.org.apache.tomcat.jdbc.pool`
+##### `LOGGING_LEVEL_ORG_APACHE_TOMCAT_JDBC_POOL` / `logging.level.org.apache.tomcat.jdbc.pool`
 Définit le niveau de journalisation pour Tomcat JDBC Pool (si utilisé).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1227,7 +1247,9 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_COM_MYSQL_CJ` / `logging.level.com.mysql.cj`
+#### Drivers de base de données
+
+##### `LOGGING_LEVEL_COM_MYSQL_CJ` / `logging.level.com.mysql.cj`
 Définit le niveau de journalisation pour le driver MySQL Connector/J.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1239,7 +1261,7 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_ORG_POSTGRESQL` / `logging.level.org.postgresql`
+##### `LOGGING_LEVEL_ORG_POSTGRESQL` / `logging.level.org.postgresql`
 Définit le niveau de journalisation pour le driver PostgreSQL.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1251,7 +1273,7 @@ env:
     value: "DEBUG"
 ```
 
-#### `LOGGING_LEVEL_ORACLE_JDBC` / `logging.level.oracle.jdbc`
+##### `LOGGING_LEVEL_ORACLE_JDBC` / `logging.level.oracle.jdbc`
 Définit le niveau de journalisation pour le driver Oracle JDBC.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
@@ -1260,6 +1282,93 @@ Définit le niveau de journalisation pour le driver Oracle JDBC.
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORACLE_JDBC
+    value: "DEBUG"
+```
+
+#### Bases de données NoSQL
+
+##### `LOGGING_LEVEL_ORG_ELASTICSEARCH` / `logging.level.org.elasticsearch`
+Définit le niveau de journalisation pour Elasticsearch.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations Elasticsearch
+- Trace les requêtes de recherche et d'indexation
+- Utile pour déboguer les problèmes de connexion et de requêtes
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_ELASTICSEARCH
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_DATA_ELASTICSEARCH` / `logging.level.org.springframework.data.elasticsearch`
+Définit le niveau de journalisation pour Spring Data Elasticsearch.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations Spring Data Elasticsearch
+- Trace les interactions avec les repositories Elasticsearch
+- Utile pour déboguer les problèmes de mapping et de requêtes
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_DATA_ELASTICSEARCH
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_MONGODB` / `logging.level.org.mongodb`
+Définit le niveau de journalisation pour MongoDB Driver.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations MongoDB
+- Trace les requêtes, insertions, mises à jour et suppressions
+- Utile pour déboguer les problèmes de connexion et de performance
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_MONGODB
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_MONGODB_DRIVER` / `logging.level.org.mongodb.driver`
+Définit le niveau de journalisation pour le driver MongoDB.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations du driver MongoDB
+- Trace les connexions, les requêtes et les opérations réseau
+- Utile pour déboguer les problèmes de connexion et de réplication
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_MONGODB_DRIVER
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_DATA_MONGODB` / `logging.level.org.springframework.data.mongodb`
+Définit le niveau de journalisation pour Spring Data MongoDB.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations Spring Data MongoDB
+- Trace les interactions avec les repositories MongoDB
+- Utile pour déboguer les problèmes de mapping et de requêtes
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_DATA_MONGODB
     value: "DEBUG"
 ```
 
