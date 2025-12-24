@@ -33,7 +33,7 @@ Active le mode débogage de Spring Boot.
 - `1` - Active le mode débogage
 - `0` - Désactive le mode débogage
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_DEBUG
@@ -275,7 +275,7 @@ Définit le niveau de journalisation racine pour toute l'application.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ROOT
@@ -293,7 +293,7 @@ Spécifie quels profils Spring sont actifs.
 - Profils multiples : `dev,debug` ou `dev,test,prod`
 - Tout nom de profil personnalisé
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_PROFILES_ACTIVE
@@ -308,7 +308,7 @@ Active la sortie couleur ANSI dans la console.
 - `never` - Désactive toujours les couleurs ANSI
 - `detect` - Détecte selon les capacités du terminal (par défaut)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_OUTPUT_ANSI_ENABLED
@@ -324,7 +324,7 @@ Définit le niveau de journalisation du framework Spring.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK
@@ -336,7 +336,7 @@ Définit le niveau de journalisation de Spring Web.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
@@ -348,7 +348,7 @@ Définit le niveau de journalisation du contexte Spring (chargement de fichiers 
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CONTEXT
@@ -360,7 +360,7 @@ Définit le niveau de journalisation des beans Spring.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BEANS
@@ -376,7 +376,7 @@ Définit le niveau de journalisation pour Spring Cloud Config (client).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG
@@ -388,7 +388,7 @@ Définit le niveau de journalisation pour le client Spring Cloud Config.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG_CLIENT
@@ -400,7 +400,7 @@ Définit le niveau de journalisation pour le serveur Spring Cloud Config.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG_SERVER
@@ -414,7 +414,7 @@ Définit l'URI du serveur Spring Cloud Config.
 - URL complète du serveur Config (ex. `http://config-server:8888`)
 - URL avec protocole HTTPS si SSL activé
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_CONFIG_URI
@@ -428,7 +428,7 @@ Définit le nom de l'application pour Spring Cloud Config.
 - Nom de l'application (ex. `myapp`)
 - Nom par défaut : `application`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_CONFIG_NAME
@@ -444,7 +444,7 @@ Définit le profil pour Spring Cloud Config.
 - `prod` - Profil production
 - Profils multiples séparés par des virgules
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_CONFIG_PROFILE
@@ -458,7 +458,7 @@ Définit la branche/label pour Spring Cloud Config (Git).
 - Nom de branche Git (ex. `main`, `master`, `develop`)
 - Par défaut : `master`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_CONFIG_LABEL
@@ -472,7 +472,7 @@ Définit si l'application doit échouer au démarrage si le serveur Config n'est
 - `true` - Échoue si le serveur Config n'est pas disponible
 - `false` - Continue même si le serveur Config n'est pas disponible (par défaut)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_CONFIG_FAIL_FAST
@@ -486,7 +486,7 @@ Définit l'intervalle initial pour les tentatives de reconnexion au serveur Conf
 - Nombre en millisecondes (ex. `1000` pour 1 seconde)
 - Par défaut : `1000`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_CONFIG_RETRY_INITIAL_INTERVAL
@@ -500,7 +500,7 @@ Définit le nombre maximum de tentatives de reconnexion au serveur Config.
 - Nombre entier (ex. `6`)
 - Par défaut : `6`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_CONFIG_RETRY_MAX_ATTEMPTS
@@ -512,7 +512,7 @@ Définit le niveau de journalisation pour Spring Vault (HashiCorp Vault).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT
@@ -524,7 +524,7 @@ Définit le niveau de journalisation pour le cœur de Spring Vault.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_CORE
@@ -536,7 +536,7 @@ Définit le niveau de journalisation pour l'authentification Vault.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_VAULT_AUTHENTICATION
@@ -550,7 +550,7 @@ Définit l'URI du serveur HashiCorp Vault.
 - URL complète du serveur Vault (ex. `http://vault:8200`)
 - URL avec protocole HTTPS si SSL activé
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_URI
@@ -569,7 +569,7 @@ Définit la méthode d'authentification pour Vault.
 - `LDAP` - Authentification LDAP
 - `CERT` - Authentification par certificat
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_AUTHENTICATION
@@ -583,7 +583,7 @@ Définit le token d'authentification Vault (pour l'authentification TOKEN).
 - Token Vault valide
 - Variable d'environnement ou secret Kubernetes recommandé
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_TOKEN
@@ -599,7 +599,7 @@ Définit le Role ID pour l'authentification AppRole Vault.
 **Valeurs possibles :**
 - Role ID Vault valide
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_APPROLE_ROLE_ID
@@ -615,7 +615,7 @@ Définit le Secret ID pour l'authentification AppRole Vault.
 **Valeurs possibles :**
 - Secret ID Vault valide
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_APPROLE_SECRET_ID
@@ -632,7 +632,7 @@ Active ou désactive le support Key-Value (KV) pour Vault.
 - `true` - Active le support KV (par défaut)
 - `false` - Désactive le support KV
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_KV_ENABLED
@@ -646,7 +646,7 @@ Définit le backend KV à utiliser dans Vault.
 - `secret` - Backend secret par défaut
 - Nom personnalisé du backend KV
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_KV_BACKEND
@@ -660,7 +660,7 @@ Définit le nom de l'application pour le backend KV Vault.
 - Nom de l'application (ex. `myapp`)
 - Par défaut : nom de l'application Spring
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_KV_APPLICATION_NAME
@@ -674,7 +674,7 @@ Active ou désactive SSL pour les connexions Vault.
 - `true` - Active SSL (recommandé en production)
 - `false` - Désactive SSL (par défaut)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_SSL_ENABLED
@@ -688,7 +688,7 @@ Définit si l'application doit échouer au démarrage si Vault n'est pas disponi
 - `true` - Échoue si Vault n'est pas disponible
 - `false` - Continue même si Vault n'est pas disponible (par défaut)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_VAULT_FAIL_FAST
@@ -704,7 +704,7 @@ Définit le niveau de journalisation pour les opérations I/O Java (lecture/écr
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_JAVA_IO
@@ -716,7 +716,7 @@ Définit le niveau de journalisation pour les opérations NIO (New I/O) Java.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_JAVA_NIO
@@ -728,7 +728,7 @@ Définit le niveau de journalisation pour les opérations sur les fichiers via N
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_JAVA_NIO_FILE
@@ -740,7 +740,7 @@ Définit le niveau de journalisation pour FileInputStream (lecture de fichiers).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_JAVA_IO_FILEINPUTSTREAM
@@ -752,7 +752,7 @@ Définit le niveau de journalisation pour FileOutputStream (écriture de fichier
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_JAVA_IO_FILEOUTPUTSTREAM
@@ -768,7 +768,7 @@ Définit le niveau de journalisation pour AWS SDK (opérations S3, etc.).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_COM_AMAZONAWS
@@ -780,7 +780,7 @@ Définit le niveau de journalisation pour les opérations S3 spécifiques.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_COM_AMAZONAWS_SERVICES_S3
@@ -792,7 +792,7 @@ Définit le niveau de journalisation pour l'authentification AWS.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_COM_AMAZONAWS_AUTH
@@ -804,7 +804,7 @@ Définit le niveau de journalisation pour Apache HTTP Client (utilisé par AWS S
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_APACHE_HTTP
@@ -818,7 +818,7 @@ Définit la clé d'accès AWS pour l'authentification S3.
 - Clé d'accès AWS valide
 - Variable d'environnement ou secret Kubernetes recommandé
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: AWS_ACCESS_KEY_ID
@@ -835,7 +835,7 @@ Définit la clé secrète AWS pour l'authentification S3.
 - Clé secrète AWS valide
 - Variable d'environnement ou secret Kubernetes recommandé
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: AWS_SECRET_ACCESS_KEY
@@ -851,7 +851,7 @@ Définit la région AWS pour les opérations S3.
 **Valeurs possibles :**
 - Nom de région AWS (ex. `us-east-1`, `eu-west-1`, `ap-southeast-1`)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: AWS_REGION
@@ -864,7 +864,7 @@ Définit le nom du bucket S3 à utiliser.
 **Valeurs possibles :**
 - Nom de bucket S3 valide
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: AWS_S3_BUCKET
@@ -878,7 +878,7 @@ Définit l'endpoint personnalisé pour S3 (utile pour S3-compatible comme MinIO)
 - URL complète de l'endpoint (ex. `http://minio:9000`)
 - Vide pour utiliser l'endpoint AWS par défaut
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: AWS_S3_ENDPOINT
@@ -892,7 +892,7 @@ Active l'accès style path pour S3 (nécessaire pour certains endpoints S3-compa
 - `true` - Active l'accès style path
 - `false` - Utilise l'accès style virtual-hosted (par défaut)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: AWS_S3_PATH_STYLE_ACCESS
@@ -906,7 +906,7 @@ Active ou désactive le support Spring Cloud AWS S3.
 - `true` - Active le support S3 (par défaut si dépendance présente)
 - `false` - Désactive le support S3
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_CLOUD_AWS_S3_ENABLED
@@ -922,7 +922,7 @@ Définit le niveau de journalisation pour SSL/TLS dans Spring Boot.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_SSL
@@ -934,7 +934,7 @@ Définit le niveau de journalisation pour les opérations SSL/TLS au niveau Java
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_JAVAX_NET_SSL
@@ -946,7 +946,7 @@ Définit le niveau de journalisation pour les opérations SSL/TLS au niveau Sun 
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_SUN_SECURITY_SSL
@@ -958,7 +958,7 @@ Définit le niveau de journalisation pour SSL/TLS dans Tomcat (si utilisé comme
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_APACHE_TOMCAT_UTIL_NET_SSL
@@ -970,7 +970,7 @@ Définit le niveau de journalisation pour le chargement SSL dans Tomcat.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_APACHE_CATALINA_LOADER
@@ -986,7 +986,7 @@ Définit le niveau de journalisation pour Spring JDBC (accès aux bases de donn�
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC
@@ -998,7 +998,7 @@ Définit le niveau de journalisation pour le cœur JDBC de Spring (exécution de
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_CORE
@@ -1010,7 +1010,7 @@ Définit le niveau de journalisation pour les sources de données Spring JDBC.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_DATASOURCE
@@ -1022,7 +1022,7 @@ Définit le niveau de journalisation pour Hibernate (ORM).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_HIBERNATE
@@ -1034,7 +1034,7 @@ Définit le niveau de journalisation pour les requêtes SQL générées par Hibe
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_HIBERNATE_SQL
@@ -1046,7 +1046,7 @@ Définit le niveau de journalisation pour les paramètres SQL bindés par Hibern
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL
@@ -1058,7 +1058,7 @@ Définit le niveau de journalisation pour HikariCP (pool de connexions).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_COM_ZAXXER_HIKARI
@@ -1070,7 +1070,7 @@ Définit le niveau de journalisation pour Tomcat JDBC Pool (si utilisé).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_APACHE_TOMCAT_JDBC_POOL
@@ -1082,7 +1082,7 @@ Définit le niveau de journalisation pour le driver MySQL Connector/J.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_COM_MYSQL_CJ
@@ -1094,7 +1094,7 @@ Définit le niveau de journalisation pour le driver PostgreSQL.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_POSTGRESQL
@@ -1106,7 +1106,7 @@ Définit le niveau de journalisation pour le driver Oracle JDBC.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORACLE_JDBC
@@ -1122,7 +1122,7 @@ Définit le niveau de journalisation pour Spring Web (contrôleurs, requêtes HT
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
@@ -1134,7 +1134,7 @@ Définit le niveau de journalisation pour Spring MVC Servlet.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_SERVLET
@@ -1146,7 +1146,7 @@ Définit le niveau de journalisation pour les filtres Spring Web.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_FILTER
@@ -1158,7 +1158,7 @@ Définit le niveau de journalisation pour Tomcat Catalina (serveur embarqué).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_APACHE_CATALINA
@@ -1170,7 +1170,7 @@ Définit le niveau de journalisation pour les connecteurs Tomcat (HTTP/HTTPS).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_APACHE_CATALINA_CONNECTOR
@@ -1182,7 +1182,7 @@ Définit le niveau de journalisation pour le cœur de Tomcat.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_APACHE_CATALINA_CORE
@@ -1194,7 +1194,7 @@ Définit le niveau de journalisation pour Jetty (si utilisé comme serveur embar
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_ECLIPSE_JETTY
@@ -1206,7 +1206,7 @@ Définit le niveau de journalisation pour Apache HttpClient (si utilisé).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_APACHE_HTTP
@@ -1222,7 +1222,7 @@ Définit le niveau de journalisation pour Spring Security.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY
@@ -1234,7 +1234,7 @@ Définit le niveau de journalisation pour Spring Security Web (filtres de sécur
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_WEB
@@ -1246,7 +1246,7 @@ Définit le niveau de journalisation pour l'authentification Spring Security.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_AUTHENTICATION
@@ -1258,7 +1258,7 @@ Définit le niveau de journalisation pour le contrôle d'accès Spring Security.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_ACCESS
@@ -1270,7 +1270,7 @@ Définit le niveau de journalisation pour OAuth2 dans Spring Security.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_OAUTH2
@@ -1286,7 +1286,7 @@ Définit le niveau de journalisation pour Spring Boot Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE
@@ -1298,7 +1298,7 @@ Définit le niveau de journalisation pour les endpoints Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_ENDPOINT
@@ -1310,7 +1310,7 @@ Définit le niveau de journalisation pour les endpoints web Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_WEB
@@ -1322,7 +1322,7 @@ Définit le niveau de journalisation pour les health checks Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_HEALTH
@@ -1334,7 +1334,7 @@ Définit le niveau de journalisation pour les métriques Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_METRICS
@@ -1352,7 +1352,7 @@ Définit quels endpoints Actuator sont exposés via HTTP.
 - `*` - Tous les endpoints
 - Liste séparée par des virgules : `health,info,metrics`
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
@@ -1367,7 +1367,7 @@ Définit si les détails des health checks doivent être affichés.
 - `when-authorized` - Afficher seulement si autorisé
 - `never` - Ne jamais afficher (par défaut)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
@@ -1381,7 +1381,7 @@ Définit si les composants individuels des health checks doivent être affichés
 - `true` - Afficher les composants
 - `false` - Ne pas afficher (par défaut)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_COMPONENTS
@@ -1395,7 +1395,7 @@ Active ou désactive le health check de l'espace disque.
 - `true` - Active le health check disque (par défaut)
 - `false` - Désactive le health check disque
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_HEALTH_DISKSPACE_ENABLED
@@ -1409,7 +1409,7 @@ Active ou désactive le health check de la base de données.
 - `true` - Active le health check DB (par défaut)
 - `false` - Désactive le health check DB
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_HEALTH_DB_ENABLED
@@ -1423,7 +1423,7 @@ Active ou désactive le health check RabbitMQ.
 - `true` - Active le health check RabbitMQ (par défaut si présent)
 - `false` - Désactive le health check RabbitMQ
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_HEALTH_RABBIT_ENABLED
@@ -1437,7 +1437,7 @@ Active ou désactive le health check Redis.
 - `true` - Active le health check Redis (par défaut si présent)
 - `false` - Désactive le health check Redis
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_HEALTH_REDIS_ENABLED
@@ -1451,7 +1451,7 @@ Active ou désactive le health check Elasticsearch.
 - `true` - Active le health check Elasticsearch (par défaut si présent)
 - `false` - Désactive le health check Elasticsearch
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_HEALTH_ELASTICSEARCH_ENABLED
@@ -1465,7 +1465,7 @@ Active ou désactive l'export des métriques vers Prometheus.
 - `true` - Active l'export Prometheus
 - `false` - Désactive l'export Prometheus (par défaut)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED
@@ -1479,7 +1479,7 @@ Définit le chemin de base pour les endpoints Actuator.
 - `/actuator` - Chemin par défaut
 - Tout chemin personnalisé (ex. `/monitoring`)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: MANAGEMENT_ENDPOINTS_WEB_BASE_PATH
@@ -1499,7 +1499,7 @@ Options JVM pour activer le traçage au niveau JVM.
 - `-XX:+TraceClassUnloading` - Trace le déchargement des classes
 - `-Djava.io.tmpdir=...` - Répertoire temporaire (peut être loggé)
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: JAVA_TOOL_OPTIONS
@@ -1509,7 +1509,7 @@ env:
 #### `JAVA_OPTS`
 Options JVM supplémentaires.
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: JAVA_OPTS
@@ -1752,7 +1752,7 @@ Active la journalisation de débogage pour Spring Boot.
 - `1` - Active la journalisation de débogage
 - `0` - Désactive la journalisation de débogage
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: DEBUG
@@ -1766,7 +1766,7 @@ Active la surveillance JMX.
 - `true` - Active JMX (par défaut)
 - `false` - Désactive JMX
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_JMX_ENABLED
@@ -1780,7 +1780,7 @@ Active le redémarrage automatique avec Spring DevTools.
 - `true` - Active le redémarrage automatique (par défaut en mode dev)
 - `false` - Désactive le redémarrage automatique
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_DEVTOOLS_RESTART_ENABLED
@@ -1794,7 +1794,7 @@ Active le support LiveReload.
 - `true` - Active LiveReload (par défaut en mode dev)
 - `false` - Désactive LiveReload
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_DEVTOOLS_LIVERELOAD_ENABLED
@@ -1808,7 +1808,7 @@ Active le mode shell interactif.
 - `true` - Active le shell interactif
 - `false` - Désactive le shell interactif
 
-**Utilisation :**
+**Exemple :**
 ```yaml
 env:
   - name: SPRING_SHELL_INTERACTIVE_ENABLED
