@@ -376,6 +376,11 @@ Définit le niveau de journalisation pour Spring Cloud Config (client).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :** Permet de tracer toutes les opérations Cloud Config :
+- Connexion au serveur Config
+- Récupération des configurations
+- Erreurs de connexion ou de parsing
+
 **Exemple :**
 ```yaml
 env:
@@ -387,6 +392,11 @@ env:
 Définit le niveau de journalisation pour le client Spring Cloud Config.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :** Permet de déboguer spécifiquement le client Config :
+- Requêtes HTTP vers le serveur Config
+- Gestion des profils et labels
+- Retry et fail-fast
 
 **Exemple :**
 ```yaml
@@ -404,6 +414,24 @@ Définit le niveau de journalisation pour le serveur Spring Cloud Config.
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG_SERVER
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_BOOTSTRAP` / `logging.level.org.springframework.cloud.bootstrap`
+Définit le niveau de journalisation pour le bootstrap Spring Cloud (chargement initial avant le contexte principal).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :** Très utile pour comprendre :
+- Chargement avant le contexte principal
+- Erreurs précoces Vault / Config
+- Ordre d'initialisation des PropertySources
+- Problèmes de connexion au démarrage
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_BOOTSTRAP
     value: "DEBUG"
 ```
 
@@ -511,6 +539,12 @@ env:
 Définit le niveau de journalisation pour Spring Vault (HashiCorp Vault).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :** Permet de tracer toutes les opérations Vault :
+- Connexion au serveur Vault
+- Authentification (token, AppRole, Kubernetes, etc.)
+- Récupération des secrets depuis les backends KV
+- Erreurs d'authentification ou de connexion
 
 **Exemple :**
 ```yaml
