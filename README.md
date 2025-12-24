@@ -3,7 +3,7 @@
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=spring)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Supported-blue?logo=kubernetes)
 ![OpenShift](https://img.shields.io/badge/OpenShift-Supported-orange?logo=redhatopenshift)
-![YAML](https://img.shields.io/badge/Format-YAML-blue)
+![YAML](https://img.shields.io/badge/Format-YAML-blue?logo=YAML)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Context :
@@ -87,10 +87,11 @@ Spring Boot repose sur SLF4J / Logback.
 ---
 ## Liste des configurations par couche
 
-### Couche 1 : Spring Boot (Niveau application)
-
 ```yaml
 env:
+  # ============================================
+  # Couche 1 : Spring Boot (Niveau application)
+  # ============================================
   - name: LOGGING_LEVEL_ROOT
     value: "DEBUG"
   - name: SPRING_PROFILES_ACTIVE
@@ -99,12 +100,10 @@ env:
     value: "always"
   - name: SPRING_DEBUG
     value: "true"
-```
 
-### Couche 2 : Spring Framework (Niveau framework)
-
-```yaml
-env:
+  # ============================================
+  # Couche 2 : Spring Framework (Niveau framework)
+  # ============================================
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
@@ -113,12 +112,10 @@ env:
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BEANS
     value: "DEBUG"
-```
 
-### Couche 3 : Vault & Cloud Config (Niveau configuration externe)
-
-```yaml
-env:
+  # ============================================
+  # Couche 3 : Vault & Cloud Config (Niveau configuration externe)
+  # ============================================
   # Cloud Config
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_CONFIG
     value: "DEBUG"
@@ -147,12 +144,10 @@ env:
     value: "true"
   - name: SPRING_CLOUD_VAULT_FAIL_FAST
     value: "true"
-```
 
-### Couche 4 : Java I/O (Niveau Java - Opérations de fichiers)
-
-```yaml
-env:
+  # ============================================
+  # Couche 4 : Java I/O (Niveau Java - Opérations de fichiers)
+  # ============================================
   - name: LOGGING_LEVEL_JAVA_IO
     value: "DEBUG"
   - name: LOGGING_LEVEL_JAVA_NIO
@@ -163,12 +158,10 @@ env:
     value: "DEBUG"
   - name: LOGGING_LEVEL_JAVA_IO_FILEOUTPUTSTREAM
     value: "DEBUG"
-```
 
-### Couche 5 : S3 / Cloud Storage (Niveau stockage cloud)
-
-```yaml
-env:
+  # ============================================
+  # Couche 5 : S3 / Cloud Storage (Niveau stockage cloud)
+  # ============================================
   - name: LOGGING_LEVEL_COM_AMAZONAWS
     value: "DEBUG"
   - name: LOGGING_LEVEL_COM_AMAZONAWS_SERVICES_S3
@@ -183,12 +176,10 @@ env:
     value: "http://minio:9000"
   - name: AWS_S3_PATH_STYLE_ACCESS
     value: "true"
-```
 
-### Couche 6 : SSL/TLS (Niveau sécurité)
-
-```yaml
-env:
+  # ============================================
+  # Couche 6 : SSL/TLS (Niveau sécurité)
+  # ============================================
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_SSL
     value: "DEBUG"
   - name: LOGGING_LEVEL_JAVAX_NET_SSL
@@ -197,12 +188,10 @@ env:
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_APACHE_TOMCAT_UTIL_NET_SSL
     value: "DEBUG"
-```
 
-### Couche 7 : Database (Niveau base de données)
-
-```yaml
-env:
+  # ============================================
+  # Couche 7 : Database (Niveau base de données)
+  # ============================================
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_JDBC_CORE
@@ -219,12 +208,10 @@ env:
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_POSTGRESQL
     value: "DEBUG"
-```
 
-### Couche 8 : HTTP/Web (Niveau réseau)
-
-```yaml
-env:
+  # ============================================
+  # Couche 8 : HTTP/Web (Niveau réseau)
+  # ============================================
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_SERVLET
@@ -237,12 +224,10 @@ env:
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_APACHE_HTTP
     value: "DEBUG"
-```
 
-### Couche 9 : Security (Niveau sécurité Spring)
-
-```yaml
-env:
+  # ============================================
+  # Couche 9 : Security (Niveau sécurité Spring)
+  # ============================================
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_WEB
@@ -253,12 +238,10 @@ env:
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_OAUTH2
     value: "DEBUG"
-```
 
-### Couche 10 : Actuator & Health Checks (Niveau monitoring)
-
-```yaml
-env:
+  # ============================================
+  # Couche 10 : Actuator & Health Checks (Niveau monitoring)
+  # ============================================
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE_HEALTH
@@ -271,12 +254,10 @@ env:
     value: "true"
   - name: MANAGEMENT_HEALTH_DB_ENABLED
     value: "true"
-```
 
-### Couche 11 : JVM (Niveau machine virtuelle)
-
-```yaml
-env:
+  # ============================================
+  # Couche 11 : JVM (Niveau machine virtuelle)
+  # ============================================
   - name: JAVA_TOOL_OPTIONS
     value: "-Djava.util.logging.config.file=/path/to/logging.properties"
   - name: JAVA_OPTS
