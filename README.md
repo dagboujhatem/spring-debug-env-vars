@@ -75,6 +75,7 @@ Spring Boot repose sur SLF4J / Logback.
       - [MySQL - `LOGGING_LEVEL_COM_MYSQL_CJ`](#logging_level_com_mysql_cj--logginglevelcommysqlcj)
       - [PostgreSQL - `LOGGING_LEVEL_ORG_POSTGRESQL`](#logging_level_org_postgresql--logginglevelorgpostgresql)
       - [Oracle - `LOGGING_LEVEL_ORACLE_JDBC`](#logging_level_oracle_jdbc--loggingleveloraclejdbc)
+      - [Teradata - `LOGGING_LEVEL_COM_TERADATA`](#logging_level_com_teradata--logginglevelcomteradata)
     - [Bases de données NoSQL](#bases-de-données-nosql)
       - [Elasticsearch](#logging_level_org_elasticsearch--logginglevelorgelasticsearch)
       - [MongoDB](#logging_level_org_mongodb--logginglevelorgmongodb)
@@ -225,6 +226,12 @@ env:
   - name: LOGGING_LEVEL_COM_MYSQL_CJ
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_POSTGRESQL
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORACLE_JDBC
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_COM_TERADATA
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_COM_TERADATA_JDBC
     value: "DEBUG"
 
   # ============================================
@@ -1469,6 +1476,41 @@ Définit le niveau de journalisation pour le driver Oracle JDBC.
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORACLE_JDBC
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_COM_TERADATA` / `logging.level.com.teradata`
+Définit le niveau de journalisation pour le driver Teradata JDBC.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations du driver Teradata JDBC
+- Trace les connexions, les requêtes SQL et les erreurs Teradata
+- Utile pour déboguer les problèmes de connexion et de requêtes Teradata
+- Trace les opérations sur les entrepôts de données Teradata
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_TERADATA
+    value: "DEBUG"
+```
+
+##### `LOGGING_LEVEL_COM_TERADATA_JDBC` / `logging.level.com.teradata.jdbc`
+Définit le niveau de journalisation pour le driver Teradata JDBC (package spécifique).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer spécifiquement les opérations du package JDBC Teradata
+- Trace les connexions, les statements et les résultats de requêtes
+- Utile pour un débogage plus précis des opérations JDBC Teradata
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_COM_TERADATA_JDBC
     value: "DEBUG"
 ```
 
