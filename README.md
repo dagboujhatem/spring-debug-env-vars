@@ -1858,6 +1858,12 @@ Définit le niveau de journalisation pour Spring Web (contrôleurs, requêtes HT
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer toutes les requêtes HTTP entrantes et sortantes
+- Trace le routage vers les contrôleurs et les méthodes handler
+- Trace les opérations Spring MVC et WebFlux
+- Utile pour déboguer les problèmes de routage et de mapping des requêtes
+
 **Exemple :**
 ```yaml
 env:
@@ -1869,6 +1875,12 @@ env:
 Définit le niveau de journalisation pour Spring MVC Servlet.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer spécifiquement les opérations Spring MVC Servlet
+- Trace le traitement des requêtes HTTP via DispatcherServlet
+- Trace la résolution des vues et la génération des réponses
+- Utile pour déboguer les problèmes de traitement des requêtes MVC
 
 **Exemple :**
 ```yaml
@@ -1882,6 +1894,11 @@ Définit le niveau de journalisation pour les filtres Spring Web.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer l'exécution des filtres Spring Web
+- Trace l'ordre d'exécution des filtres et leur chaînage
+- Utile pour déboguer les problèmes de filtrage des requêtes
+
 **Exemple :**
 ```yaml
 env:
@@ -1893,6 +1910,11 @@ env:
 Définit le niveau de journalisation pour Tomcat Catalina (serveur embarqué).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations internes de Tomcat Catalina
+- Trace le cycle de vie du serveur, les contextes et les applications
+- Utile pour déboguer les problèmes de démarrage et de configuration Tomcat
 
 **Exemple :**
 ```yaml
@@ -1906,6 +1928,11 @@ Définit le niveau de journalisation pour les connecteurs Tomcat (HTTP/HTTPS).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations des connecteurs Tomcat
+- Trace les connexions HTTP/HTTPS, les sockets et les threads
+- Utile pour déboguer les problèmes de connexions réseau et de performance
+
 **Exemple :**
 ```yaml
 env:
@@ -1917,6 +1944,11 @@ env:
 Définit le niveau de journalisation pour le cœur de Tomcat.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations du cœur de Tomcat
+- Trace les composants core, les valves et le pipeline de traitement
+- Utile pour un débogage approfondi de Tomcat
 
 **Exemple :**
 ```yaml
@@ -1930,6 +1962,11 @@ Définit le niveau de journalisation pour Jetty (si utilisé comme serveur embar
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations du serveur Jetty
+- Trace les connexions, les handlers et le traitement des requêtes
+- Utile pour déboguer les problèmes de configuration et de performance Jetty
+
 **Exemple :**
 ```yaml
 env:
@@ -1941,6 +1978,11 @@ env:
 Définit le niveau de journalisation pour Apache HttpClient (si utilisé).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les requêtes HTTP effectuées par Apache HttpClient
+- Trace les connexions, les requêtes et les réponses HTTP
+- Utile pour voir les requêtes HTTP brutes vers les services externes
 
 **Exemple :**
 ```yaml
@@ -1958,6 +2000,11 @@ Définit le niveau de journalisation pour Spring Security.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer toutes les opérations Spring Security
+- Trace l'authentification, l'autorisation et la gestion des sessions
+- Utile pour déboguer les problèmes de sécurité et d'accès
+
 **Exemple :**
 ```yaml
 env:
@@ -1969,6 +2016,11 @@ env:
 Définit le niveau de journalisation pour Spring Security Web (filtres de sécurité).
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les filtres de sécurité Spring Security
+- Trace l'exécution de la chaîne de filtres de sécurité
+- Utile pour déboguer les problèmes de filtrage et de protection des endpoints
 
 **Exemple :**
 ```yaml
@@ -1982,6 +2034,11 @@ Définit le niveau de journalisation pour l'authentification Spring Security.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer le processus d'authentification Spring Security
+- Trace la validation des credentials et la création des tokens d'authentification
+- Utile pour déboguer les problèmes d'authentification (login, tokens, etc.)
+
 **Exemple :**
 ```yaml
 env:
@@ -1994,6 +2051,11 @@ Définit le niveau de journalisation pour le contrôle d'accès Spring Security.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les décisions de contrôle d'accès Spring Security
+- Trace l'évaluation des règles d'autorisation et des permissions
+- Utile pour déboguer les problèmes d'autorisation et d'accès refusé
+
 **Exemple :**
 ```yaml
 env:
@@ -2005,6 +2067,11 @@ env:
 Définit le niveau de journalisation pour OAuth2 dans Spring Security.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations OAuth2 dans Spring Security
+- Trace le flux OAuth2, la validation des tokens et l'échange de tokens
+- Utile pour déboguer les problèmes d'authentification OAuth2 et de gestion des tokens
 
 **Exemple :**
 ```yaml
@@ -2022,6 +2089,11 @@ Définit le niveau de journalisation pour Spring Boot Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer toutes les opérations Spring Boot Actuator
+- Trace l'accès aux endpoints, les health checks et les métriques
+- Utile pour déboguer les problèmes d'exposition et d'accès aux endpoints Actuator
+
 **Exemple :**
 ```yaml
 env:
@@ -2033,6 +2105,11 @@ env:
 Définit le niveau de journalisation pour les endpoints Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer spécifiquement les opérations sur les endpoints Actuator
+- Trace les appels aux endpoints, les réponses et les erreurs
+- Utile pour déboguer les problèmes d'accès aux endpoints individuels
 
 **Exemple :**
 ```yaml
@@ -2046,6 +2123,11 @@ Définit le niveau de journalisation pour les endpoints web Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les endpoints Actuator exposés via HTTP
+- Trace les requêtes HTTP vers les endpoints et les réponses
+- Utile pour déboguer les problèmes d'exposition web des endpoints
+
 **Exemple :**
 ```yaml
 env:
@@ -2058,6 +2140,11 @@ Définit le niveau de journalisation pour les health checks Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
 
+**Usage :**
+- Permet de tracer les opérations de health checks Actuator
+- Trace l'exécution des health checks individuels (DB, Redis, RabbitMQ, etc.)
+- Utile pour déboguer les problèmes de santé des composants
+
 **Exemple :**
 ```yaml
 env:
@@ -2069,6 +2156,11 @@ env:
 Définit le niveau de journalisation pour les métriques Actuator.
 
 **Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations de collecte et d'exposition des métriques
+- Trace la création, la mise à jour et l'exposition des métriques
+- Utile pour déboguer les problèmes de métriques et de monitoring
 
 **Exemple :**
 ```yaml
@@ -2129,6 +2221,11 @@ Définit si les détails des health checks doivent être affichés.
 - `when-authorized` - Afficher seulement si autorisé
 - `never` - Ne jamais afficher (par défaut)
 
+**Usage :**
+- Contrôle l'affichage des détails dans les réponses des health checks
+- Permet de voir l'état détaillé de chaque composant (DB, Redis, etc.)
+- Utile pour le débogage en développement, mais attention en production
+
 **Exemple :**
 ```yaml
 env:
@@ -2142,6 +2239,11 @@ Définit si les composants individuels des health checks doivent être affichés
 **Valeurs possibles :**
 - `true` - Afficher les composants
 - `false` - Ne pas afficher (par défaut)
+
+**Usage :**
+- Active l'affichage des composants individuels dans les health checks
+- Permet de voir l'état de chaque composant (DB, Redis, RabbitMQ, etc.) séparément
+- Utile pour identifier quel composant spécifique est en panne
 
 **Exemple :**
 ```yaml
@@ -2157,6 +2259,11 @@ Active ou désactive le health check de l'espace disque.
 - `true` - Active le health check disque (par défaut)
 - `false` - Désactive le health check disque
 
+**Usage :**
+- Active ou désactive la vérification de l'espace disque disponible
+- Le health check vérifie si l'espace disque est suffisant
+- Utile pour surveiller l'espace disque et éviter les problèmes de stockage
+
 **Exemple :**
 ```yaml
 env:
@@ -2170,6 +2277,11 @@ Active ou désactive le health check de la base de données.
 **Valeurs possibles :**
 - `true` - Active le health check DB (par défaut)
 - `false` - Désactive le health check DB
+
+**Usage :**
+- Active ou désactive la vérification de santé de la base de données
+- Le health check teste la connexion à la base de données
+- Utile pour surveiller la disponibilité de la base de données
 
 **Exemple :**
 ```yaml
@@ -2185,6 +2297,11 @@ Active ou désactive le health check RabbitMQ.
 - `true` - Active le health check RabbitMQ (par défaut si présent)
 - `false` - Désactive le health check RabbitMQ
 
+**Usage :**
+- Active ou désactive la vérification de santé de RabbitMQ
+- Le health check teste la connexion à RabbitMQ
+- Utile pour surveiller la disponibilité de RabbitMQ
+
 **Exemple :**
 ```yaml
 env:
@@ -2198,6 +2315,11 @@ Active ou désactive le health check Redis.
 **Valeurs possibles :**
 - `true` - Active le health check Redis (par défaut si présent)
 - `false` - Désactive le health check Redis
+
+**Usage :**
+- Active ou désactive la vérification de santé de Redis
+- Le health check teste la connexion à Redis
+- Utile pour surveiller la disponibilité de Redis
 
 **Exemple :**
 ```yaml
@@ -2213,6 +2335,11 @@ Active ou désactive le health check Elasticsearch.
 - `true` - Active le health check Elasticsearch (par défaut si présent)
 - `false` - Désactive le health check Elasticsearch
 
+**Usage :**
+- Active ou désactive la vérification de santé d'Elasticsearch
+- Le health check teste la connexion à Elasticsearch
+- Utile pour surveiller la disponibilité d'Elasticsearch
+
 **Exemple :**
 ```yaml
 env:
@@ -2227,6 +2354,11 @@ Active ou désactive l'export des métriques vers Prometheus.
 - `true` - Active l'export Prometheus
 - `false` - Désactive l'export Prometheus (par défaut)
 
+**Usage :**
+- Active ou désactive l'exposition des métriques au format Prometheus
+- Les métriques sont exposées via l'endpoint `/actuator/prometheus`
+- Utile pour l'intégration avec Prometheus et le monitoring
+
 **Exemple :**
 ```yaml
 env:
@@ -2240,6 +2372,11 @@ Définit le chemin de base pour les endpoints Actuator.
 **Valeurs possibles :**
 - `/actuator` - Chemin par défaut
 - Tout chemin personnalisé (ex. `/monitoring`)
+
+**Usage :**
+- Configure le chemin de base pour tous les endpoints Actuator
+- Par défaut, les endpoints sont accessibles sous `/actuator/*`
+- Utile pour personnaliser l'URL des endpoints ou pour des raisons de sécurité
 
 **Exemple :**
 ```yaml
@@ -2261,6 +2398,11 @@ Options JVM pour activer le traçage au niveau JVM.
 - `-XX:+TraceClassUnloading` - Trace le déchargement des classes
 - `-Djava.io.tmpdir=...` - Répertoire temporaire (peut être loggé)
 
+**Usage :**
+- Permet de configurer les options JVM pour le traçage et le débogage
+- Utile pour tracer le chargement des classes, la configuration du logging JVM
+- Les options sont appliquées automatiquement par la JVM au démarrage
+
 **Exemple :**
 ```yaml
 env:
@@ -2270,6 +2412,15 @@ env:
 
 #### `JAVA_OPTS`
 Options JVM supplémentaires.
+
+**Valeurs possibles :**
+- Toute option JVM valide (ex. `-Xmx512m`, `-XX:+HeapDumpOnOutOfMemoryError`)
+- Options de débogage (ex. `-XX:+TraceClassLoading`, `-XX:+PrintGCDetails`)
+
+**Usage :**
+- Permet de configurer des options JVM supplémentaires pour le débogage
+- Utile pour configurer la mémoire, le garbage collection, et le traçage JVM
+- Les options sont passées à la JVM au démarrage de l'application
 
 **Exemple :**
 ```yaml
