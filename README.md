@@ -5,6 +5,12 @@
 ![OpenShift](https://img.shields.io/badge/OpenShift-Supported-orange?logo=redhatopenshift)
 ![YAML](https://img.shields.io/badge/Format-YAML-blue?logo=YAML)
 ![License](https://img.shields.io/badge/License-MIT-green)
+![Spring Security](https://img.shields.io/badge/Spring%20Security-Supported-success?logo=springsecurity)
+![Spring Data](https://img.shields.io/badge/Spring%20Data-Supported-success?logo=spring)
+![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-Supported-success?logo=spring)
+![Database](https://img.shields.io/badge/Database-Multiple-blue)
+![MQ](https://img.shields.io/badge/MQ-Kafka%20RabbitMQ%20IBM-blue)
+![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen)
 
 ## Context :
 
