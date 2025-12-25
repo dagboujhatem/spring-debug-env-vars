@@ -288,9 +288,20 @@ env:
     value: "DEBUG"
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_OAUTH2
     value: "DEBUG"
+  # SAML 2.0
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2_SERVICE_PROVIDER
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2_RELYING_PARTY
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_OPENSP_SAML
+    value: "DEBUG"
+  - name: LOGGING_LEVEL_ORG_OPENSP_SAML_SECURITY
+    value: "DEBUG"
 
   # ============================================
-  # Couche 10 : Actuator & Health Checks (Niveau monitoring)
+  # Couche 11 : Actuator & Health Checks (Niveau monitoring)
   # ============================================
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_ACTUATE
     value: "DEBUG"
@@ -2077,6 +2088,93 @@ Définit le niveau de journalisation pour OAuth2 dans Spring Security.
 ```yaml
 env:
   - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_OAUTH2
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2` / `logging.level.org.springframework.security.saml2`
+Définit le niveau de journalisation pour SAML 2.0 dans Spring Security.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations SAML 2.0 dans Spring Security
+- Trace le flux SAML (SSO, assertions, validation des signatures)
+- Utile pour déboguer les problèmes d'authentification SAML et de validation des assertions
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2_SERVICE_PROVIDER` / `logging.level.org.springframework.security.saml2.serviceprovider`
+Définit le niveau de journalisation pour le Service Provider SAML 2.0.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations du Service Provider SAML 2.0
+- Trace la génération des requêtes d'authentification (AuthnRequest)
+- Trace la réception et le traitement des assertions SAML
+- Utile pour déboguer les problèmes côté Service Provider
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2_SERVICE_PROVIDER
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2_RELYING_PARTY` / `logging.level.org.springframework.security.saml2.relyingparty`
+Définit le niveau de journalisation pour le Relying Party SAML 2.0.
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations du Relying Party SAML 2.0
+- Trace la communication avec l'Identity Provider (IdP)
+- Trace la validation des assertions et des signatures
+- Utile pour déboguer les problèmes de communication avec l'IdP
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY_SAML2_RELYING_PARTY
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_OPENSP_SAML` / `logging.level.org.opensaml`
+Définit le niveau de journalisation pour OpenSAML (bibliothèque utilisée par Spring Security SAML).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations de la bibliothèque OpenSAML
+- Trace le parsing, la validation et la signature des messages SAML
+- Utile pour un débogage approfondi des problèmes SAML au niveau de la bibliothèque
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_OPENSP_SAML
+    value: "DEBUG"
+```
+
+#### `LOGGING_LEVEL_ORG_OPENSP_SAML_SECURITY` / `logging.level.org.opensaml.security`
+Définit le niveau de journalisation pour la sécurité OpenSAML (signatures, certificats).
+
+**Valeurs possibles :** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`
+
+**Usage :**
+- Permet de tracer les opérations de sécurité OpenSAML
+- Trace la validation des signatures, des certificats et des clés
+- Utile pour déboguer les problèmes de signature et de certificats SAML
+
+**Exemple :**
+```yaml
+env:
+  - name: LOGGING_LEVEL_ORG_OPENSP_SAML_SECURITY
     value: "DEBUG"
 ```
 
