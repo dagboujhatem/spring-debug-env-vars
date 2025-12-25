@@ -33,6 +33,11 @@ Active le mode débogage de Spring Boot.
 - `1` - Active le mode débogage
 - `0` - Désactive le mode débogage
 
+**Usage :**
+- Active le mode débogage global de Spring Boot
+- Affiche des informations détaillées sur le démarrage de l'application
+- Utile pour comprendre le cycle de vie de l'application et la configuration
+
 **Exemple :**
 ```yaml
 env:
@@ -2763,6 +2768,11 @@ Active la journalisation de débogage pour Spring Boot.
 - `1` - Active la journalisation de débogage
 - `0` - Désactive la journalisation de débogage
 
+**Usage :**
+- Active la journalisation de débogage pour Spring Boot
+- Similaire à SPRING_DEBUG mais avec un nom plus court
+- Utile pour activer rapidement le mode débogage
+
 **Exemple :**
 ```yaml
 env:
@@ -2776,6 +2786,11 @@ Active la surveillance JMX.
 **Valeurs possibles :**
 - `true` - Active JMX (par défaut)
 - `false` - Désactive JMX
+
+**Usage :**
+- Active ou désactive la surveillance JMX (Java Management Extensions)
+- Permet de surveiller et gérer l'application via des outils JMX (JConsole, VisualVM)
+- Utile pour le monitoring et la gestion de l'application en production
 
 **Exemple :**
 ```yaml
@@ -2791,6 +2806,11 @@ Active le redémarrage automatique avec Spring DevTools.
 - `true` - Active le redémarrage automatique (par défaut en mode dev)
 - `false` - Désactive le redémarrage automatique
 
+**Usage :**
+- Active ou désactive le redémarrage automatique de l'application lors des changements de code
+- Utile pour le développement local pour recharger automatiquement les modifications
+- Ne doit pas être activé en production
+
 **Exemple :**
 ```yaml
 env:
@@ -2805,6 +2825,11 @@ Active le support LiveReload.
 - `true` - Active LiveReload (par défaut en mode dev)
 - `false` - Désactive LiveReload
 
+**Usage :**
+- Active ou désactive le support LiveReload pour recharger automatiquement les pages du navigateur
+- Utile pour le développement web pour voir les changements sans recharger manuellement
+- Nécessite un plugin de navigateur LiveReload
+
 **Exemple :**
 ```yaml
 env:
@@ -2818,6 +2843,11 @@ Active le mode shell interactif.
 **Valeurs possibles :**
 - `true` - Active le shell interactif
 - `false` - Désactive le shell interactif
+
+**Usage :**
+- Active ou désactive le mode shell interactif pour Spring Shell
+- Permet d'utiliser un shell interactif pour exécuter des commandes dans l'application
+- Utile pour les applications CLI (Command Line Interface) avec Spring Shell
 
 **Exemple :**
 ```yaml
